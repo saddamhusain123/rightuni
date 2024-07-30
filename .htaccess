@@ -1,0 +1,23 @@
+RewriteEngine On
+
+RewriteRule ^college$ listing-details.php [NC,L]
+RewriteRule ^college/([0-9a-zA-Z_-]+)$ listing-details.php?url=$1 [NC,L]
+
+RewriteRule ^colleges$ listing-grid.php [NC,L]
+RewriteRule ^colleges/([0-9a-zA-Z_-]+)$ listing-grid.php?id=$1 [NC,L]
+
+RewriteRule ^blog$ blog-details.php [NC,L]
+RewriteRule ^blog/([0-9a-zA-Z_-]+)$ blog-details.php?slug=$1 [NC,L]
+
+RewriteRule ^blogs$ blog-grid.php [NC,L]
+RewriteRule ^blogs/([0-9a-zA-Z_-]+)$ blog-grid.php?slug=$1 [NC,L]
+
+RewriteRule ^universities$ listing-grid-all.php [NC,L]
+
+RewriteRule ^contact$ contact.php [NC,L]
+
+RewriteRule ^home$ index.php [NC,L]
+
+RewriteRule ^register$ register.php [NC,L]
+
+RewriteRule ^login$ login.php [NC,L]
