@@ -29,7 +29,7 @@ if (isset($_GET['id'])) {
                        AND colleges.deleted = 0
                        AND ($id = 1 OR college_course_manage.course_id = $id)
                      GROUP BY college_course_manage.college_id
-                     ORDER BY colleges.id DESC";
+                     ORDER BY colleges.id DESC LIMIT 9";
                      // ORDER BY colleges.id DESC $limit";
     
     $collegeResult = $conn->query($collegeQuery);
