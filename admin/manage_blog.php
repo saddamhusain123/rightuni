@@ -147,7 +147,7 @@ if ($searchTxt) {
                     <img src="<?= $blog_image ?>" alt="blog image" style="width: 40px; height: 40px; border-radius: 4px;">
                   </td>
                   <td><?= htmlspecialchars($blog['title']) ?></td>
-                  <td><?= htmlspecialchars(substr($blog['description'], 0, 50)) ?>...</td>
+                  <td><?= htmlspecialchars(substr(strip_tags($blog['description']), 0, 50)) ?>...</td>
                   <td>
                     <div class="row toggle_btn">
                       <input type="checkbox" id="enable_disable_check_<?= $i ?>" data-id="<?= htmlspecialchars($blog['id']) ?>" data-table="blogs" data-column="status" class="cbx hidden enable_disable" <?= $blog['status'] == 1 ? 'checked' : '' ?>>

@@ -4,7 +4,6 @@ include 'assets/db_confing.php';
 // Assuming you have established a connection to your database and stored it in $conn
 header('Content-Type: application/json');
 
-
 if (isset($_GET['id'])) {
     $id = intval($_GET['id']);
     
@@ -15,6 +14,8 @@ if (isset($_GET['id'])) {
                          LEFT JOIN colleges ON college_course_manage.college_id = colleges.id
                          LEFT JOIN college_details ON college_details.college_id = colleges.id
                          LEFT JOIN states ON college_details.state_id = states.id
+                         WHERE colleges.status = 1
+                           AND colleges.deleted = 0
                          GROUP BY college_course_manage.college_id";
     } else {
         // Show colleges based on selected course and limit to 9
@@ -24,6 +25,8 @@ if (isset($_GET['id'])) {
                          LEFT JOIN college_details ON college_details.college_id = colleges.id
                          LEFT JOIN states ON college_details.state_id = states.id
                          WHERE college_course_manage.course_id = $id
+                           AND colleges.status = 1
+                           AND colleges.deleted = 0
                          GROUP BY college_course_manage.college_id";
     }
 
