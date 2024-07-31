@@ -34,6 +34,7 @@ if (isset($_GET['url'])) {
             college_fees.hostel_fee_ac,
             college_fees.hostel_fee_non_ac,
             college_fees.mess_fee_inr,
+            states.name AS state_name,
             GROUP_CONCAT(DISTINCT courses.name SEPARATOR ', ') AS course_names
         FROM 
             colleges
@@ -45,6 +46,8 @@ if (isset($_GET['url'])) {
             college_course_manage ON colleges.id = college_course_manage.college_id
         LEFT JOIN 
             courses ON college_course_manage.course_id = courses.id
+        LEFT JOIN 
+            states ON college_details.state_id = states.id
         WHERE 
             colleges.slug = '$slug'
         GROUP BY 
@@ -150,7 +153,7 @@ if (isset($_POST['submit'])) {
                               <li>
                                 <a href="#">
                                   <i class="fal fa-map-marker-alt"></i>
-                                  <?php echo $row['address'] . ', ' . $row['city'] . ',' . $row['state_id']; ?>
+                                  <?php echo $row['address'] . ', ' . $row['city'] . ', ' . $row['state_name']; ?>
                                 </a>
                               </li>
                             </ul>
