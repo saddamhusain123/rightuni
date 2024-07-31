@@ -97,10 +97,22 @@ if (isset($_POST['submit'])) {
     $desc = $_POST['news_description'];
     $status = 1;
 
+
+     $meta_title = $_POST['meta_title'];
+    $meta_description = $_POST['meta_description'];
+    $meta_keywords_json = $_POST['meta_keywords'];
+    $meta_keywords_array = json_decode($meta_keywords_json, true); // Convert JSON string to PHP array
+
+    // Extract values from the array and implode them into a comma-separated string
+    $meta_keywords = '';
+    if (is_array($meta_keywords_array)) {
+        $meta_keywords = implode(', ', array_column($meta_keywords_array, 'value'));
+    }
+
     // Update college information
-    $qry = "UPDATE colleges SET `name` = ?, `slug` = ?, `image` = ?, `desc` = ?, `status` = ?, `created_at` = NOW() WHERE `id` = ?";
+    $qry = "UPDATE colleges SET `name` = ?, `slug` = ?, `image` = ?, `desc` = ?, `status` = ?, `meta_title` =  ?, `meta_keywords` = ?, `meta_description` = ?, `updated_at` = NOW() WHERE `id` = ?";
     $stmt = $mysqli->prepare($qry);
-    $stmt->bind_param("ssssii", $college_name, $college_slug, $news_featured_image, $desc, $status, $cid);
+    $stmt->bind_param("ssssisssi", $college_name, $college_slug, $news_featured_image, $desc, $status, $meta_title, $meta_keywords, $meta_description, $cid);
     if (!$stmt->execute()) {
         echo "Error updating college: " . $stmt->error;
         exit;
@@ -367,9 +379,42 @@ if (isset($_POST['submit'])) {
               </div>
             </div>
              
-            
+             <div class="row">
+               <div class="col-md-6">
+                  <label class="col-md-12 control-label">Meta Title :-</label>
+                  <input type="text" name="meta_title" id="meta_title" value="<?= $row_college['meta_title']?>"  class="form-control">
+                </div>
+                <div class="col-md-6">
+                  <label class="col-md-12 control-label">Meta Keywords :-</label>
+                  <input type="text" name="meta_keywords" id="meta_keywords" value="<?= $row_college['meta_keywords']?>"  class="form-control tagify-input" data-role="tagsinput">
+                </div>
+              </div>
+
+            </div>
+            <style type="text/css">
+              /* Add this CSS to adjust the height of the Tagify input field */
+              .tagify-input {
+                height: 100px; /* Adjust the height as needed */
+                overflow: auto; /* Ensure overflow is handled */
+              }
+
+            </style>
+
             
             <div class="row">
+              <div class="col-md-6">
+                <label class="col-md-12 control-label">Meta Description</label>
+                <br/><br/>
+                <textarea name="meta_description" id="meta_description" class="form-control"> <?= htmlspecialchars($row_college['meta_description']) ?></textarea>
+                <script>
+                  CKEDITOR.replace( 'meta_description' ,{
+                    filebrowserBrowseUrl : 'filemanager/dialog.php?type=2&editor=ckeditor&fldr=&akey=viaviweb',
+                    filebrowserUploadUrl : 'filemanager/dialog.php?type=2&editor=ckeditor&fldr=&akey=viaviweb',
+                    filebrowserImageBrowseUrl : 'filemanager/dialog.php?type=1&editor=ckeditor&fldr=&akey=viaviweb'
+                  });
+                </script>
+              </div>
+
               <div class="col-md-6">
                 <label class="col-md-12 control-label">Description</label>
                 <br/><br/>
@@ -382,6 +427,10 @@ if (isset($_POST['submit'])) {
                   });
                 </script>
               </div>
+              
+            </div>
+            <br>
+            <div class="row">
               <div class="col-md-6">
                 <label class="col-md-12 control-label">Specialization :-</label><br/><br/>
                 <textarea name="specialization" id="specialization" value=""  class="form-control"> <?= htmlspecialchars($row_college['desc']) ?></textarea>
@@ -394,9 +443,6 @@ if (isset($_POST['submit'])) {
                   });
                 </script>
               </div>
-            </div>
-            <br>
-            <div class="row">
               <div class="col-md-6">
                 <label class="col-md-12 control-label">Admission Process :-</label><br/><br/>
                 <textarea name="admission_process" id="admission_process" value=""  class="form-control"> <?= htmlspecialchars($row_college['spacialization']) ?></textarea>
@@ -409,6 +455,7 @@ if (isset($_POST['submit'])) {
                   });
                 </script>
               </div>
+
               </div>
             <br/>  
             <div class="form-group">
@@ -516,3 +563,38 @@ if (isset($_POST['submit'])) {
   });
    
 </script>       
+<script>
+  document.getElementById('college_form').addEventListener('keydown', function(event) {
+    if (event.key === 'Enter' && event.target.tagName === 'INPUT') {
+        event.preventDefault();
+    }
+});
+
+
+
+</script>
+
+
+<!-- Tagify CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css">
+<!-- Tagify JS -->
+<script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var input = document.querySelector('#meta_keywords');
+        new Tagify(input, {
+            delimiters: ",| ", // allow both comma and space as delimiters
+            maxTags: Infinity, // no limit on the number of tags
+            dropdown: {
+                enabled: 0, // disable the dropdown by default for performance
+                maxItems: 500, // max items to show in dropdown
+            }
+        });
+    });
+</script>
+ <script>
+            new Tagify(document.querySelector('#meta_keywords'), {
+              whitelist: [],
+              enforceWhitelist: false
+            });
+          </script>

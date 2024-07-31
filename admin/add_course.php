@@ -10,13 +10,33 @@ require_once("thumbnail_images.class.php");
 // Get current datetime
 $current_datetime = date('Y-m-d H:i:s');
 
+
+    $meta_keywords_json = $_POST['meta_keywords'];
+    $meta_keywords_array = json_decode($meta_keywords_json, true); 
+    
+    $meta_keywords = '';
+    if (is_array($meta_keywords_array)) {
+        $meta_keywords = implode(', ', array_column($meta_keywords_array, 'value'));
+    }
+    
+
 // Get category add start
 if (isset($_POST['submit']) && isset($_GET['add'])) {
     $data = array(
         'name' => cleanInput($_POST['name']),
         'slug' => cleanInput($_POST['slug']),
+
+        'meta_title' => cleanInput($_POST['meta_title']),
+        'meta_keywords' => $meta_keywords,
+
+        'meta_description' => cleanInput($_POST['meta_description']),
+
+        
         'created_at' => $current_datetime // Add creation timestamp
     );
+
+   
+
 
     $qry = Insert('courses', $data);
 
@@ -38,7 +58,14 @@ if (isset($_POST['submit']) && isset($_POST['cat_id'])) {
     $data = array(
         'name' => cleanInput($_POST['name']),
         'slug' => cleanInput($_POST['slug']),
-        'updated_at' => $current_datetime // Add update timestamp
+
+        'meta_title' => cleanInput($_POST['meta_title']),
+        'meta_keywords' => $meta_keywords,
+
+        'meta_description' => cleanInput($_POST['meta_description']),
+
+        
+        'created_at' => $current_datetime // Add creation timestamp
     );
 
     $category_edit = Update('courses', $data, "WHERE id = '" . $_POST['cat_id'] . "'");
@@ -89,6 +116,43 @@ if (isset($_POST['submit']) && isset($_POST['cat_id'])) {
                             </div>
 
                             <div class="form-group">
+                                <label class="col-md-3 control-label">Meta Title :-</label>
+                                <div class="col-md-6">
+                                    <input type="text" name="meta_title" id="meta_title" value="<?php if (isset($_GET['cat_id'])) { echo htmlspecialchars($row['meta_title']); } ?>" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Meta Keywords :-</label>
+                                <div class="col-md-6">
+                                    <input type="text" name="meta_keywords" id="meta_keywords" value="<?php if (isset($_GET['cat_id'])) { echo htmlspecialchars($row['meta_keywords']); } ?>" class="form-control tagify-input" required>
+                                </div>
+                            </div>
+                             <style type="text/css">
+                                  /* Add this CSS to adjust the height of the Tagify input field */
+                                  .tagify-input {
+                                    height: 100px; /* Adjust the height as needed */
+                                    overflow: auto; /* Ensure overflow is handled */
+                                  }
+
+                                </style>
+                                 <br/>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Meta Description :-</label>
+                                <div class="col-md-6">
+                                   
+                                   
+                                    <textarea name="meta_description" id="meta_description" class="form-control"><?php if (isset($_GET['cat_id'])) { echo htmlspecialchars($row['meta_description']); } ?></textarea>
+                                    <script>
+                                      CKEDITOR.replace( 'meta_description' ,{
+                                        filebrowserBrowseUrl : 'filemanager/dialog.php?type=2&editor=ckeditor&fldr=&akey=viaviweb',
+                                        filebrowserUploadUrl : 'filemanager/dialog.php?type=2&editor=ckeditor&fldr=&akey=viaviweb',
+                                        filebrowserImageBrowseUrl : 'filemanager/dialog.php?type=1&editor=ckeditor&fldr=&akey=viaviweb'
+                                      });
+                                    </script>
+                                </div>
+                            </div>
+<br/>
+                            <div class="form-group">
                                 <div class="col-md-9 col-md-offset-3">
                                     <button type="submit" name="submit" class="btn btn-primary">Save</button>
                                 </div>
@@ -120,3 +184,38 @@ if (isset($_POST['submit']) && isset($_POST['cat_id'])) {
     document.getElementById('slug_display').value = slug;
   });
 </script>
+<script>
+  document.getElementById('college_form').addEventListener('keydown', function(event) {
+    if (event.key === 'Enter' && event.target.tagName === 'INPUT') {
+        event.preventDefault();
+    }
+});
+
+
+
+</script>
+
+
+<!-- Tagify CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css">
+<!-- Tagify JS -->
+<script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var input = document.querySelector('#meta_keywords');
+        new Tagify(input, {
+            delimiters: ",| ", // allow both comma and space as delimiters
+            maxTags: Infinity, // no limit on the number of tags
+            dropdown: {
+                enabled: 0, // disable the dropdown by default for performance
+                maxItems: 500, // max items to show in dropdown
+            }
+        });
+    });
+</script>
+ <script>
+            new Tagify(document.querySelector('#meta_keywords'), {
+              whitelist: [],
+              enforceWhitelist: false
+            });
+          </script>

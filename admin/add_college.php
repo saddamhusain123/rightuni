@@ -62,7 +62,24 @@ if (isset($_POST['submit'])) {
     $desc = $_POST['news_description'];
     $status = 1;
 
-    $qry = "INSERT INTO colleges(`name`, `slug`, `image`, `desc`, `status`,`created_at`) VALUES ('" . addslashes($college_name) . "', '" . addslashes($college_slug) . "', '" . addslashes($news_featured_image) . "', '" . addslashes($desc) . "', '$status',NOW())";
+
+    $meta_title = $_POST['meta_title'];
+    $meta_description = $_POST['meta_description'];
+    $meta_keywords_json = $_POST['meta_keywords'];
+    $meta_keywords_array = json_decode($meta_keywords_json, true); // Convert JSON string to PHP array
+
+    // Extract values from the array and implode them into a comma-separated string
+    $meta_keywords = '';
+    if (is_array($meta_keywords_array)) {
+        $meta_keywords = implode(', ', array_column($meta_keywords_array, 'value'));
+    }
+
+    // print_r($meta_description);exit;
+
+   
+
+
+    $qry = "INSERT INTO colleges(`name`, `slug`, `image`, `desc`, `status`, `meta_title`, `meta_keywords`, `meta_description` , `created_at`) VALUES ('" . addslashes($college_name) . "', '" . addslashes($college_slug) . "', '" . addslashes($news_featured_image) . "', '" . addslashes($desc) . "', '$status', '" . addslashes($meta_title) . "', '" . addslashes($meta_keywords) . "', '" . addslashes($meta_description) . "',NOW())";
     mysqli_query($mysqli, $qry);
 
     $last_id = mysqli_insert_id($mysqli);
@@ -89,12 +106,7 @@ if (isset($_POST['submit'])) {
             mysqli_query($mysqli, $sql);
         }
         
-        // Optionally, handle success or error messages
-        if(mysqli_affected_rows($mysqli) > 0) {
-            echo "Courses added successfully.";
-        } else {
-            echo "Failed to add courses.";
-        }
+        
     }
 
     $address = $_POST['address'];
@@ -157,6 +169,25 @@ if (isset($_POST['submit'])) {
                 mysqli_query($mysqli, $feedetails);
 
 
+//     $meta_keyword = $_POST['meta_keyword'];
+//     $meta_title = $_POST['meta_title'];
+//     $meta_description = $_POST['meta_description'];
+//     $module = ['colleges'];
+
+
+
+//     $meta_details = "INSERT INTO meta_data('meta_title', 'meta_keywords', 'meta_description', 'module', 'module_id')
+//             VALUES(
+//               '" . addslashes($meta_title). "',
+//               '" . addslashes($meta_keyword) . "',
+//               '" . addslashes($meta_description). "',
+//               '" . addslashes($module). "',
+//               '" . addslashes($last_id). "'
+//           )";
+
+// mysqli_query($mysqli, $meta_details);
+
+
 
     $_SESSION['msg'] = "10";
     header("Location: colleges.php");
@@ -193,7 +224,7 @@ if (isset($_POST['submit'])) {
     </div>
     <div class="clearfix"></div>
     <div class="card-body mrg_bottom"> 
-      <form action="" method="post" class="form form-horizontal" enctype="multipart/form-data">
+      <form action="" method="post" class="form form-horizontal" id="college_form" enctype="multipart/form-data">
 
         <div class="section">
           <div class="section-body">
@@ -350,9 +381,42 @@ if (isset($_POST['submit'])) {
               </div>
             </div>
              
-            
+             <div class="row">
+               <div class="col-md-6">
+                  <label class="col-md-12 control-label">Meta Title :-</label>
+                  <input type="text" name="meta_title" id="meta_title" class="form-control">
+                </div>
+                <div class="col-md-6">
+                  <label class="col-md-12 control-label">Meta Keywords :-</label>
+                  <input type="text" name="meta_keywords" id="meta_keywords" class="form-control tagify-input" data-role="tagsinput">
+                </div>
+              </div>
+
+            </div>
+            <style type="text/css">
+              /* Add this CSS to adjust the height of the Tagify input field */
+              .tagify-input {
+                height: 100px; /* Adjust the height as needed */
+                overflow: auto; /* Ensure overflow is handled */
+              }
+
+            </style>
+
+
             
             <div class="row">
+              <div class="col-md-6">
+                <label class="col-md-12 control-label">Meta Description</label>
+                <br/><br/>
+                <textarea name="meta_description" id="meta_description" class="form-control"></textarea>
+                <script>
+                  CKEDITOR.replace( 'meta_description' ,{
+                    filebrowserBrowseUrl : 'filemanager/dialog.php?type=2&editor=ckeditor&fldr=&akey=viaviweb',
+                    filebrowserUploadUrl : 'filemanager/dialog.php?type=2&editor=ckeditor&fldr=&akey=viaviweb',
+                    filebrowserImageBrowseUrl : 'filemanager/dialog.php?type=1&editor=ckeditor&fldr=&akey=viaviweb'
+                  });
+                </script>
+              </div>
               <div class="col-md-6">
                 <label class="col-md-12 control-label">Description</label>
                 <br/><br/>
@@ -365,6 +429,11 @@ if (isset($_POST['submit'])) {
                   });
                 </script>
               </div>
+
+              
+            </div>
+            <br>
+            <div class="row">
               <div class="col-md-6">
                 <label class="col-md-12 control-label">Specialization :-</label><br/><br/>
                 <textarea name="specialization" id="specialization" class="form-control"></textarea>
@@ -377,9 +446,6 @@ if (isset($_POST['submit'])) {
                   });
                 </script>
               </div>
-            </div>
-            <br>
-            <div class="row">
               <div class="col-md-6">
                 <label class="col-md-12 control-label">Admission Process :-</label><br/><br/>
                 <textarea name="admission_process" id="admission_process" class="form-control"></textarea>
@@ -405,9 +471,10 @@ if (isset($_POST['submit'])) {
     </div>
   </div>
 </div>
+<?php include("includes/footer.php");?> 
+
 </div>
 
-<?php include("includes/footer.php");?> 
 
 <script type="text/javascript">
 	// Get youtube video size start
@@ -499,3 +566,38 @@ if (isset($_POST['submit'])) {
   });
    
 </script>       
+<script>
+  document.getElementById('college_form').addEventListener('keydown', function(event) {
+    if (event.key === 'Enter' && event.target.tagName === 'INPUT') {
+        event.preventDefault();
+    }
+});
+
+
+
+</script>
+
+
+<!-- Tagify CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css">
+<!-- Tagify JS -->
+<script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var input = document.querySelector('#meta_keywords');
+        new Tagify(input, {
+            delimiters: ",| ", // allow both comma and space as delimiters
+            maxTags: Infinity, // no limit on the number of tags
+            dropdown: {
+                enabled: 0, // disable the dropdown by default for performance
+                maxItems: 500, // max items to show in dropdown
+            }
+        });
+    });
+</script>
+ <script>
+            new Tagify(document.querySelector('#meta_keywords'), {
+              whitelist: [],
+              enforceWhitelist: false
+            });
+          </script>

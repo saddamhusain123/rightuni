@@ -9,12 +9,28 @@ require("includes/check_availability.php");
 // Get current datetime
 $current_datetime = date('Y-m-d H:i:s');
 
+
+
+    $meta_keywords_json = $_POST['meta_keywords'];
+    $meta_keywords_array = json_decode($meta_keywords_json, true); 
+    
+    $meta_keywords = '';
+    if (is_array($meta_keywords_array)) {
+        $meta_keywords = implode(', ', array_column($meta_keywords_array, 'value'));
+    }
+    
+
+
+
 // Handle adding new blog
 if (isset($_POST['submit']) && !isset($_GET['id'])) {
     $blog_title = cleanInput($_POST['blog_title']);
     $blog_slug = cleanInput($_POST['blog_slug']);
     $blog_desc = cleanInput($_POST['blog_desc']);
     $created_at = $current_datetime;
+
+
+
 
     // Handle file upload
     if ($_FILES['blog_image']['name'] != '') {
@@ -31,11 +47,18 @@ if (isset($_POST['submit']) && !isset($_GET['id'])) {
         $blog_image = '';
     }
 
+
+
     $data = array(
         'title' => $blog_title,
         'slug'  => $blog_slug,
         'description'  => $blog_desc,
         'image' => $blog_image,
+        'meta_title' => cleanInput($_POST['meta_title']),
+        'meta_keywords' => $meta_keywords,
+
+        'meta_description' => cleanInput($_POST['meta_description']),
+
         'created_at' => $created_at,
         'updated_at' => $created_at,
         'status'     => 1
@@ -73,10 +96,14 @@ if (isset($_POST['submit']) && isset($_POST['id'])) {
     }
 
     $data = array(
-        'title' => $blog_title,
+       'title' => $blog_title,
         'slug'  => $blog_slug,
         'description'  => $blog_desc,
         'image' => $blog_image,
+        'meta_title' => cleanInput($_POST['meta_title']),
+        'meta_keywords' => $meta_keywords,
+        'meta_description' => cleanInput($_POST['meta_description']),
+        'status'     => 1,
         'updated_at' => $updated_at
     );
 
@@ -145,6 +172,46 @@ if (isset($_GET['id'])) {
                                 </div>
                             </div>
 
+
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Meta Title :-</label>
+                                <div class="col-md-6">
+                                    <input type="text" name="meta_title" id="meta_title" value="<?php if (isset($_GET['id'])) { echo htmlspecialchars($row['meta_title']); } ?>" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Meta Keywords :-</label>
+                                <div class="col-md-6">
+                                    <input type="text" name="meta_keywords" id="meta_keywords" value="<?php if (isset($_GET['id'])) { echo htmlspecialchars($row['meta_keywords']); } ?>" class="form-control tagify-input" required>
+                                </div>
+                            </div>
+                             <style type="text/css">
+                                  /* Add this CSS to adjust the height of the Tagify input field */
+                                  .tagify-input {
+                                    height: 100px; /* Adjust the height as needed */
+                                    overflow: auto; /* Ensure overflow is handled */
+                                  }
+
+                                </style>
+                                 <br/>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Meta Description :-</label>
+                                <div class="col-md-6">
+                                   
+                                   
+                                    <textarea name="meta_description" id="meta_description" class="form-control"><?php if (isset($_GET['id'])) { echo htmlspecialchars($row['meta_description']); } ?></textarea>
+                                    <script>
+                                      CKEDITOR.replace( 'meta_description' ,{
+                                        filebrowserBrowseUrl : 'filemanager/dialog.php?type=2&editor=ckeditor&fldr=&akey=viaviweb',
+                                        filebrowserUploadUrl : 'filemanager/dialog.php?type=2&editor=ckeditor&fldr=&akey=viaviweb',
+                                        filebrowserImageBrowseUrl : 'filemanager/dialog.php?type=1&editor=ckeditor&fldr=&akey=viaviweb'
+                                      });
+                                    </script>
+                                </div>
+                            </div>
+
+                            <br>
+
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Blog Image :-
                                     <p class="control-label-help">(Recommended resolution: 500x400, 600x500, 700x600 OR width greater than height)</p>
@@ -190,3 +257,38 @@ if (isset($_GET['id'])) {
     document.getElementById('blog_slug').value = slug;
   });
 </script>
+<script>
+  document.getElementById('college_form').addEventListener('keydown', function(event) {
+    if (event.key === 'Enter' && event.target.tagName === 'INPUT') {
+        event.preventDefault();
+    }
+});
+
+
+
+</script>
+
+
+<!-- Tagify CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css">
+<!-- Tagify JS -->
+<script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var input = document.querySelector('#meta_keywords');
+        new Tagify(input, {
+            delimiters: ",| ", // allow both comma and space as delimiters
+            maxTags: Infinity, // no limit on the number of tags
+            dropdown: {
+                enabled: 0, // disable the dropdown by default for performance
+                maxItems: 500, // max items to show in dropdown
+            }
+        });
+    });
+</script>
+ <script>
+            new Tagify(document.querySelector('#meta_keywords'), {
+              whitelist: [],
+              enforceWhitelist: false
+            });
+          </script>
