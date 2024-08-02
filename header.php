@@ -17,8 +17,6 @@ $image = "https://www.defaulturl.com/defaultimage.jpg";
 // // Initialize Open Graph URL
 $og_url = $url; // Default base URL
 
-$data = [];
-
 $sqlcourses = "SELECT meta_title, meta_keywords, meta_description FROM courses WHERE meta_title IS NOT NULL OR meta_keywords IS NOT NULL OR meta_description IS NOT NULL";
 $result = $conn->query($sqlcourses);
 
@@ -58,6 +56,7 @@ $allData = array_merge($allData,$colleges);
  
 $commaSeparatedStringMetakeywords = "";
 $commaSeparatedStringMetaDescription = "";
+$meta_titles = array();
 foreach ($allData as $key => $value) {
     if(!empty($value['meta_title'])){
         $meta_titles[] = $value['meta_title'];
@@ -73,8 +72,6 @@ foreach ($allData as $key => $value) {
     
     
 }
-
-
 
 $commaSeparatedStringMetaTitle = implode(",  ", $meta_titles);
 

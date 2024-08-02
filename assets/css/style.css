@@ -1348,6 +1348,7 @@ textarea.form-control-custom+i {
     font-size: 50px;
     line-height: 1;
     margin-bottom: 15px;
+    display: block !important;
 }
 
 .service_box .title {
