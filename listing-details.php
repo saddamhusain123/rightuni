@@ -5,7 +5,7 @@ include 'assets/db_confing.php';
 // From Slug to GET to Particular College
 if (isset($_GET['url'])) {
     $slug = $_GET['url'];
-            
+           
     $slug = $conn->real_escape_string($slug); // Sanitize the input
 
     $sql = "

@@ -1,140 +1,117 @@
 <?php
-$url = str_replace(basename($_SERVER['PHP_SELF']), "", $_SERVER['PHP_SELF']);
 session_start();
-ob_start();
+ob_start(); 
 
-include 'assets/db_confing.php'; // Ensure this path is correct
+include 'assets/db_confing.php'; // Ensure this file contains the correct DB connection settings
+
+$url = str_replace(basename($_SERVER['PHP_SELF']), "", $_SERVER['PHP_SELF']);
 
 // Initialize default values
-$default_values = [
-    'title' => 'RightUni',
-    'description' => 'Find comprehensive details about colleges, courses, and university rankings at RightUni. Your guide to higher education.',
-    'keywords' => 'colleges, university details, college rankings, higher education, course details, university admissions, college reviews',
-    'og_title' => 'RightUni - Your Guide to Higher Education',
-    'og_url' => 'https://www.rightuni.in',
-    'og_description' => 'Find comprehensive details about colleges, courses, and university rankings at RightUni. Your guide to higher education.',
-    'og_image' => 'https://www.defaulturl.com/defaultimage.jpg',
-    'structured_data' => ''
-];
+$title = "RightUni";
+$description = "Default description";
+$meta_title = "Default Meta Title";
+$meta_keywords = "default, keywords";
+$meta_description = "Default Meta Description";
+$image = "https://www.defaulturl.com/defaultimage.jpg";
 
-// Check if type and slug are provided via GET request
-if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['type']) && isset($_GET['slug'])) {
-    $type = $_GET['type']; // This could be 'college', 'course', or 'blog'
-    $slug = $_GET['slug'];
+// // Initialize Open Graph URL
+$og_url = $url; // Default base URL
 
-    $allowed_types = ['college', 'course', 'blog'];
-    if (in_array($type, $allowed_types)) {
-        // Prepare the SQL query based on the type
-        $sql = "SELECT name, slug, description, meta_title, meta_keywords, meta_description, image
-                FROM $type
-                WHERE slug = ?";
+$data = [];
 
-        if ($stmt = $conn->prepare($sql)) {
-            $stmt->bind_param("s", $slug);
-            $stmt->execute();
-            $stmt->bind_result($title, $slug, $description, $meta_title, $meta_keywords, $meta_description, $image);
-            $stmt->fetch();
-            $stmt->close();
+$sqlcourses = "SELECT meta_title, meta_keywords, meta_description FROM courses WHERE meta_title IS NOT NULL OR meta_keywords IS NOT NULL OR meta_description IS NOT NULL";
+$result = $conn->query($sqlcourses);
 
-            // Override default values with fetched data
-            $default_values['title'] = $meta_title ?: $default_values['title'];
-            $default_values['description'] = $meta_description ?: $default_values['description'];
-            $default_values['keywords'] = $meta_keywords ?: $default_values['keywords'];
-            $default_values['og_title'] = $meta_title ?: $default_values['og_title'];
-            $default_values['og_description'] = $meta_description ?: $default_values['og_description'];
-            $default_values['og_image'] = $image ?: $default_values['og_image'];
-            $default_values['og_url'] = $url . "?type=$type&slug=$slug"; // Dynamically generate URL
-
-            // Add structured data based on type
-            switch ($type) {
-                case 'colleges':
-                    $default_values['structured_data'] = json_encode([
-                        "@context" => "https://schema.org",
-                        "@type" => "CollegeOrUniversity",
-                        "name" => $title,
-                        "description" => $description,
-                        "url" => $default_values['og_url'],
-                        "image" => $image,
-                    ]);
-                    break;
-                case 'courses':
-                    $default_values['structured_data'] = json_encode([
-                        "@context" => "https://schema.org",
-                        "@type" => "Course",
-                        "name" => $title,
-                        "description" => $description,
-                        "provider" => [
-                            "@type" => "Organization",
-                            "name" => "RightUni",
-                            "url" => "https://www.rightuni.com"
-                        ],
-                        "image" => $image,
-                    ]);
-                    break;
-                case 'blog':
-                    $default_values['structured_data'] = json_encode([
-                        "@context" => "https://schema.org",
-                        "@type" => "BlogPosting",
-                        "headline" => $title,
-                        "description" => $description,
-                        "image" => $image,
-                        "url" => $default_values['og_url'],
-                        "publisher" => [
-                            "@type" => "Organization",
-                            "name" => "RightUni",
-                            "logo" => [
-                                "@type" => "ImageObject",
-                                "url" => "https://www.rightuni.com/logo.png"
-                            ]
-                        ]
-                    ]);
-                    break;
-            }
-        }
-    }
+if ($result) {
+   
+    $courses = $result->fetch_all(MYSQLI_ASSOC);
+    // $data['courses'] = $courses;
+    $result->free();
+} else {
+    echo "Error executing courses query: " . $conn->error;
 }
 
-// Sanitize the output
-$title = htmlspecialchars($default_values['title']);
-$description = htmlspecialchars($default_values['description']);
-$keywords = htmlspecialchars($default_values['keywords']);
-$og_title = htmlspecialchars($default_values['og_title']);
-$og_url = htmlspecialchars($default_values['og_url']);
-$og_description = htmlspecialchars($default_values['og_description']);
-$og_image = htmlspecialchars($default_values['og_image']);
-$structured_data = htmlspecialchars($default_values['structured_data']);
-?>
+$sqlblogs = "SELECT meta_title, meta_keywords, meta_description FROM blogs WHERE meta_title IS NOT NULL OR meta_keywords IS NOT NULL OR meta_description IS NOT NULL";
+$result = $conn->query($sqlblogs);
 
+if ($result) {
+    $blogs = $result->fetch_all(MYSQLI_ASSOC);
+    $result->free();
+} else {
+    echo "Error executing blogs query: " . $conn->error;
+}
+$allData = array_merge($courses,$blogs);
+
+
+$sqlcolleges = "SELECT meta_title, meta_keywords, meta_description FROM colleges WHERE meta_title IS NOT NULL OR meta_keywords IS NOT NULL OR meta_description IS NOT NULL";
+$result = $conn->query($sqlcolleges);
+
+if ($result) {
+    $colleges = $result->fetch_all(MYSQLI_ASSOC);
+    // $data['colleges'] = $colleges;
+    $result->free();
+} else {
+    echo "Error executing colleges query: " . $conn->error;
+}
+
+$allData = array_merge($allData,$colleges);
+ 
+$commaSeparatedStringMetakeywords = "";
+$commaSeparatedStringMetaDescription = "";
+foreach ($allData as $key => $value) {
+    if(!empty($value['meta_title'])){
+        $meta_titles[] = $value['meta_title'];
+    }
+    
+    if(!empty($value['meta_keywords'])){
+        $commaSeparatedStringMetakeywords .= $value['meta_keywords'];
+    }
+
+    if(!empty($value['meta_description'])){
+            $commaSeparatedStringMetaDescription .= $value['meta_description'];
+    }
+    
+    
+}
+
+
+
+$commaSeparatedStringMetaTitle = implode(",  ", $meta_titles);
+
+
+
+?>
 <!DOCTYPE HTML>
-<html lang="en">
+<html lang="zxx">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="<?php echo $description; ?>">
-    <meta name="keywords" content="<?php echo $keywords; ?>">
-    <meta property="og:title" content="<?php echo $og_title; ?>">
-    <meta property="og:url" content="<?php echo $og_url; ?>">
-    <meta property="og:description" content="<?php echo $og_description; ?>">
-    <meta property="og:image" content="<?php echo $og_image; ?>">
-    <meta property="og:type" content="article">
-    <meta name="robots" content="index, follow">
-    <title><?php echo $title; ?></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title><?php echo htmlspecialchars($title); ?></title>
+    <meta name='title' content='<?php echo htmlspecialchars($commaSeparatedStringMetaTitle); ?>'/>
+    <meta name='description' content='<?php echo htmlspecialchars($commaSeparatedStringMetaDescription); ?>'/>
+    <meta name='keywords' content='<?php echo htmlspecialchars($commaSeparatedStringMetakeywords); ?>' />
+    <meta property='og:title' content='<?php echo htmlspecialchars($meta_title); ?>' />
+    <meta property='og:url' content='<?php echo htmlspecialchars($og_url); ?>' />
+    <meta property='og:description' content='<?php echo htmlspecialchars($description); ?>'>
+    <meta property='og:image' content='<?php echo htmlspecialchars($image); ?>'>
+    <meta property="og:type" content="article" />
+    <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
     <link rel="icon" href="favicon.ico">
-    <!-- CSS Links -->
-    <link href="<?php echo $url; ?>assets/css/plugins/bootstrap.min.css" rel="stylesheet">
-    <link href="<?php echo $url; ?>assets/fonts/font-awesome.min.css" rel="stylesheet">
-    <link href="<?php echo $url; ?>assets/fonts/bs-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="<?php echo $url; ?>assets/css/plugins/slick.css" rel="stylesheet">
-    <link href="<?php echo $url; ?>assets/css/plugins/nice-select.css" rel="stylesheet">
-    <link href="<?php echo $url; ?>assets/css/style.css" rel="stylesheet">
-    <link href="<?php echo $url; ?>assets/css/responsive.css" rel="stylesheet">
-    <link href="<?php echo $url; ?>assets/css/scorolling.css" rel="stylesheet">
+    <!-- Css -->
+    <link href="<?php echo htmlspecialchars($url); ?>assets/css/plugins/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo htmlspecialchars($url); ?>assets/fonts/font-awesome.min.css" rel="stylesheet">
+    <link href="<?php echo htmlspecialchars($url); ?>assets/fonts/bs-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="<?php echo htmlspecialchars($url); ?>assets/css/plugins/slick.css" rel="stylesheet">
+    <link href="<?php echo htmlspecialchars($url); ?>assets/css/plugins/nice-select.css" rel="stylesheet">
+    <link href="<?php echo htmlspecialchars($url); ?>assets/css/style.css" rel="stylesheet">
+    <link href="<?php echo htmlspecialchars($url); ?>assets/css/responsive.css" rel="stylesheet">
+    <link href="<?php echo htmlspecialchars($url); ?>assets/css/scorolling.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <base href="<?php echo $url; ?>">
-    <script type="application/ld+json">
-        <?php echo $structured_data; ?>
-    </script>
+    <base href="<?php echo htmlspecialchars($url); ?>" />
 </head>
    <body>
 
