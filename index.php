@@ -499,7 +499,7 @@ function truncateText($text, $wordLimit) {
                             </div>
                             <h2 class="post_title">
                                 <a href="blog\<?php echo htmlspecialchars($blog['slug']); ?>">
-                                    <?php echo truncateText(htmlspecialchars($blog['title']), 7); ?>
+                                    <?php echo truncateText(htmlspecialchars($blog['title']), 4); ?>
                                 </a>
                             </h2>
                             <p class="post_desc mb-0"><?php echo truncateText(htmlspecialchars($blog['description']), 20); ?></p>

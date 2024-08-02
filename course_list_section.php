@@ -1,6 +1,7 @@
 <?php 
 $uriSegments = explode("/", parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
 $showViewAll = !in_array('universities', $uriSegments);
+
 ?>
 <section class="section-padding">
    <div class="container">
@@ -40,6 +41,16 @@ $showViewAll = !in_array('universities', $uriSegments);
 </section>
 
 <script>
+
+function truncateText(text, wordLimit) {
+   const words = text.split(' ');
+   if (words.length > wordLimit) {
+       return words.slice(0, wordLimit).join(' ') + '...';
+   }
+   return text;
+}
+
+
 function fetchColleges(id) {
    $.ajax({
       url: "get_colleges.php",
@@ -68,7 +79,7 @@ function fetchColleges(id) {
                            </a>
                         </div>
                         <div class="listing_caption">
-                           <h4 class="title"><a href="college/${college.slug}">${college.name}</a></h4>
+                           <h4 class="title"><a href="college/${college.slug}">${truncateText(college.name, 2)}</a></h4>
                            <ul class="listing_meta">
                               <li><i class="fas fa-map-marker-alt"></i> ${college.city}, ${college.state_name}</li>
                               <li><i class="fas fa-clock"></i> ${formattedDate}</li>

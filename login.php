@@ -95,11 +95,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h1 class="page-title">Login / SignIn</h1>
+                <h1 class="page-title">Login / Sign-In</h1>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="home">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Login / SignIn</li>
+                        <li class="breadcrumb-item active" aria-current="page">Login / Sign-In</li>
                     </ol>
                 </nav>
             </div>
@@ -110,24 +110,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <section class="section">
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-lg-8">
+            <div class="col-lg-6">
+                <img src="assets/images/forgot-password.png">
+            </div>
+            <div class="col-lg-6">
                 <div class="sign_in_up_box thm-bg-color-light">
                     <h3>Log In</h3>
-                    <!-- <div class="row">
-                        <div class="col-md-6">
-                            <button type="button" class="thm-btn w-100 mb-xl-30">
-                                <i class="fab fa-facebook-f ms-0 me-4"></i>
-                                Login with Facebook
-                            </button>
-                        </div>
-                        <div class="col-md-6">
-                            <button type="button" class="thm-btn w-100 mb-xl-30">
-                                <i class="fab fa-google ms-0 me-4"></i>
-                                Login with Google
-                            </button>
-                        </div>
-                    </div>
-                    <span class="divider_text">Or Login with</span> -->
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
                         <div class="row">
                             <div class="col-12">
@@ -145,14 +133,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     <button id="password_eye" class="fal fa-eye" style="position: absolute; right: -30px; bottom: 0px; z-index: 10; color: var(--thm-body-color); " type="button">
                                     </button>
                                     <span class="help-block text-danger"><?php echo $password_err; ?></span>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-group mb-3">
-                                    <div class="custom-control form-check-radio me-sm-2 d-flex">
-                                        <input type="radio" class="form-check-input" id="radioValidation">
-                                        <label class="form-check-label ms-2" for="radioValidation">Remember me</label>
-                                    </div>
                                 </div>
                             </div>
                             <div class="col-12">
