@@ -26,20 +26,24 @@ if (isset($_POST['submit']) && !isset($_GET['id'])) {
         $meta_keywords = implode(', ', array_column($meta_keywords_array, 'value'));
     }
 
-    // Handle file upload
-    if ($_FILES['blog_image']['name'] != '') {
+    // 
+
+
+    if ($_POST['blog_image_url'] == '') {
         $ext = pathinfo($_FILES['blog_image']['name'], PATHINFO_EXTENSION);
         $blog_image = rand(0, 99999) . "_" . date('dmYhis') . "." . $ext;
         $tpath1 = 'images/' . $blog_image;
 
         if ($ext != 'png') {
-            compress_image($_FILES["blog_image"]["tmp_name"], $tpath1, 80);
+            $pic1 = compress_image($_FILES["blog_image"]["tmp_name"], $tpath1, 80);
         } else {
-            move_uploaded_file($_FILES['blog_image']['tmp_name'], $tpath1);
+            $tmp = $_FILES['blog_image']['tmp_name'];
+            move_uploaded_file($tmp, $tpath1);
         }
     } else {
-        $blog_image = '';
+        $news_featured_image = trim($_POST['blog_image_url']);
     }
+
 
     $data = array(
         'title' => $blog_title,
@@ -213,6 +217,7 @@ if (isset($_GET['id'])) {
 
                             <div class="row">
                               <div class="col-md-6">
+                                <input type="hidden" name="blog_image_url" value="">
                                 <label class="col-md-12 control-label">Blog Image :-</label><br/><br/>
                                 <div class="fileupload_block">
                                     <input type="file" name="blog_image" accept=".png, .jpg, .jpeg, .svg, .gif" id="fileupload">
@@ -255,7 +260,29 @@ if (isset($_GET['id'])) {
     document.getElementById('blog_slug').value = slug;
   });
 </script>
+<script type="text/javascript">
+  // Get featured image
+  $("input[name='blog_image']").change(function() { 
+    var file=$(this);
 
+    if(file[0].files.length != 0){
+      if(isImage($(this).val())){
+        render_upload_image(this,$(this).next('.fileupload_img').find("img"));
+        $("input[name='blog_image_url']").val('');
+      }
+      else
+      {
+        $(this).val('');
+        $('.notifyjs-corner').empty();
+        $.notify(
+          'Only jpg/jpeg, png, gif and svg files are allowed!',
+          { position:"top center",className: 'error'}
+          );
+      }
+    }
+  });
+   
+</script>  
 
 <script>
   document.getElementById('college_form').addEventListener('keydown', function(event) {

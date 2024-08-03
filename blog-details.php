@@ -7,7 +7,7 @@ $slug = isset($_GET['slug']) ? $conn->real_escape_string($_GET['slug']) : '';
 
 if ($slug) {
     // Query to get the blog details by slug
-    $sql = "SELECT image, title, description, created_at FROM blogs WHERE slug = '$slug'";
+    $sql = "SELECT image, title, description, created_at FROM blogs WHERE slug = '$slug' AND deleted != 1";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
