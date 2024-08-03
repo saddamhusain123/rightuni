@@ -24,6 +24,11 @@ $qry_users="SELECT COUNT(*) as num FROM users WHERE `id` <> 0 AND `status` = '1'
 $total_users = mysqli_fetch_array(mysqli_query($mysqli,$qry_users));
 $total_users = $total_users['num'];
 
+// Get users list
+$qry_blogs="SELECT COUNT(*) as num FROM blogs WHERE `id` <> 0 AND `status` = '1' AND `deleted` != '1'";
+$total_blogs = mysqli_fetch_array(mysqli_query($mysqli,$qry_blogs));
+$total_blogs = $total_blogs['num'];
+
 // Get users graph start
 
 $countStr='';
@@ -108,31 +113,42 @@ if($smtp_warning)
 <?php } ?>
 
 <div class="row">
-  
-  <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12"> <a href="courses.php" class="card card-banner card-green-light">
-    <div class="card-body"> <i class="icon fa fa-sitemap fa-4x"></i>
-      <div class="content">
-        <div class="title">Courses</div>
-        <div class="value"><span class="sign"></span><?php echo $total_category;?></div>
+  <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12"> <a href="courses.php" class="card card-banner card-green-light">
+      <div class="card-body"> <i class="icon fa fa-sitemap fa-4x"></i>
+        <div class="content">
+          <div class="title">Courses</div>
+          <div class="value"><span class="sign"></span><?php echo $total_category;?></div>
+        </div>
       </div>
-    </div>
-  </a> </div>
-  <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12"> <a href="colleges.php" class="card card-banner card-blue-light">
-    <div class="card-body"> <i class="icon fa fa-newspaper-o fa-4x"></i>
-      <div class="content">
-        <div class="title">colleges</div>
-        <div class="value"><span class="sign"></span><?php echo thousandsNumberFormat($total_news);?></div>
+    </a> 
+  </div>
+  <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12"> <a href="colleges.php" class="card card-banner card-blue-light">
+      <div class="card-body"> <i class="icon fa fa-newspaper-o fa-4x"></i>
+        <div class="content">
+          <div class="title">colleges</div>
+          <div class="value"><span class="sign"></span><?php echo thousandsNumberFormat($total_news);?></div>
+        </div>
       </div>
-    </div>
-  </a> </div>
-  <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12"> <a href="manage_users.php" class="card card-banner card-yellow-light">
-    <div class="card-body"> <i class="icon fa fa-users fa-4x"></i>
-      <div class="content">
-        <div class="title">Users</div>
-        <div class="value"><span class="sign"></span><?php echo thousandsNumberFormat($total_users);?></div>
+    </a> 
+  </div>
+  <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12"> <a href="manage_users.php" class="card card-banner card-yellow-light">
+      <div class="card-body"> <i class="icon fa fa-users fa-4x"></i>
+        <div class="content">
+          <div class="title">Users</div>
+          <div class="value"><span class="sign"></span><?php echo thousandsNumberFormat($total_users);?></div>
+        </div>
       </div>
-    </div>
-  </a> </div>
+    </a> 
+  </div>
+  <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12"> <a href="manage_users.php" class="card card-banner card-pink-light">
+      <div class="card-body"> <i class="icon fa fa-image fa-4x"></i>
+        <div class="content">
+          <div class="title">Blogs</div>
+          <div class="value"><span class="sign"></span><?php echo thousandsNumberFormat($total_blogs);?></div>
+        </div>
+      </div>
+    </a> 
+  </div>
 </div>
 
 <div class="clearfix"></div>
