@@ -64,7 +64,8 @@ function truncateText($text, $wordLimit) {
                         <h2 class="post_title">
                            <a href="blog/<?php echo ($blog['slug']); ?>"><?php echo truncateText(htmlspecialchars($blog['title']), 4); ?></a>
                         </h2>
-                        <p class="post_desc mb-0"><?php echo truncateText(htmlspecialchars($blog['description']), 20); ?></p>
+                        <p class="post_desc mb-0"><?php echo truncateText(htmlspecialchars($blog['description']), 20); ?>
+</p>
                      </div>
                   </div>
                </article>
