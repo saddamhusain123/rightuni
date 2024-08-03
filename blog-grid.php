@@ -53,7 +53,7 @@ function truncateText($text, $wordLimit) {
                <article class="col-lg-4 col-md-6 post">
                   <div class="post_wrapper">
                      <div class="post_image">
-                        <a href="blog?slug=<?php echo ($blog['slug']); ?>" class="d-flex h-100">
+                        <a href="blog/<?php echo ($blog['slug']); ?>" class="d-flex h-100">
                         <img src="admin/images/<?php echo ($blog['image']); ?>" alt="img" class="image-fit blog-image">
                         </a>
                      </div>
@@ -62,7 +62,7 @@ function truncateText($text, $wordLimit) {
                            <?php echo date('d M', strtotime($blog['created_at'])); ?>
                         </div>
                         <h2 class="post_title">
-                           <a href="blog/<?php echo ($blog['slug']); ?>"><?php echo truncateText(htmlspecialchars($blog['title']), 7); ?></a>
+                           <a href="blog/<?php echo ($blog['slug']); ?>"><?php echo truncateText(htmlspecialchars($blog['title']), 4); ?></a>
                         </h2>
                         <p class="post_desc mb-0"><?php echo truncateText(htmlspecialchars($blog['description']), 20); ?>
 </p>

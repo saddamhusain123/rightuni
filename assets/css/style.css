@@ -1348,6 +1348,7 @@ textarea.form-control-custom+i {
     font-size: 50px;
     line-height: 1;
     margin-bottom: 15px;
+    display: block !important;
 }
 
 .service_box .title {
@@ -2302,6 +2303,7 @@ textarea.form-control-custom+i {
     overflow: hidden;
     text-align: center;
     margin-bottom: 30px;
+    height: 296px;
 }
 
 .contact_info_box:before {

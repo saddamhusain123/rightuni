@@ -165,15 +165,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <div class="col-12">
                                 <div class="form-group">
                                     <label>Address</label>
-                                    <input type="text" name="address" class="form-control form-control-custom" placeholder="Address" autocomplete="off" value="<?php echo htmlspecialchars($address ?? ''); ?>">
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-group mb-3">
-                                    <div class="custom-control form-check-radio me-sm-2 d-flex">
-                                        <input type="radio" class="form-check-input" id="radioValidation">
-                                        <label class="form-check-label ms-2" for="radioValidation">Remember me</label>
-                                    </div>
+                                    <textarea style="resize: none;" rows="5" name="address" class="form-control form-control-custom" placeholder="Address" autocomplete="off" value="<?php echo htmlspecialchars($address ?? ''); ?>"></textarea>
+                                    
                                 </div>
                             </div>
                             <div class="col-12">
