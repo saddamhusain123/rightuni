@@ -16,92 +16,10 @@ $url = str_replace("$basename", "", $_SERVER['PHP_SELF']);
                Discover Universities
                <span class="thm-color-one fw-lighter"> Near By You.</span>
             </h1>
-            <p class="subtitle">The Best Learning University</p>
+            <p class="subtitle">The Best Learning University</p><br>
+            <p style="font-size: 18px" class="subtitle" >RightUni is a premier platform offering exhaustive college listings and detailed insights into various institutions. It provides an intuitive interface for exploring courses, campus amenities, and admission criteria, helping students make informed decisions.</p>
          </div>
-         <div class="row justify-content-center">
-            <div class="col-lg-10">
-               <div class="banner_form">
-                  <div class="input-group">
-                     <input type="text" name="#" class="form-control" placeholder="What are you looking for?"
-                        autocomplete="off" required>
-                     <select class="form-control custom-select" name="#" required>
-                        <option selected>All Categories</option>
-                        <option value="option 1">Option 1</option>
-                        <option value="option 2">Option 2</option>
-                        <option value="option 3">Option 3</option>
-                     </select>
-                     <input type="text" name="#" class="form-control location_input" placeholder="Location"
-                        autocomplete="off" required>
-                     <div class="input-group-append ms-lg-3 ms-sm-2 mb-xl-30">
-                        <button type="submit" class="thm-btn w-100">
-                           <i class="fal fa-search"></i>
-                           Search
-                        </button>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <form class="row justify-content-center banner_form g-2">
-            <div class="col-auto">
-               <div class="form-group form-radio">
-                  <input class="form-radio-input" type="radio" name="category" value="Hotels & Travels" id="radio_one">
-                  <label class="form-radio-label" for="radio_one">
-                     <div>
-                        <!-- <span class="icon fal fa-hotel"></span> -->
-                        <span><i class="fa fa-laptop"></i></span>
-                        <p class="mb-0">All Online Courses</p>
-                     </div>
-                  </label>
-               </div>
-            </div>
-            <div class="col-auto">
-               <div class="form-group form-radio">
-                  <input class="form-radio-input" type="radio" name="category" value="Hotels & Travels" id="radio_two"
-                     checked>
-                  <label class="form-radio-label" for="radio_two">
-                     <div>
-                        <span><i class="fa fa-graduation-cap"></i></span>
-                        <p class="mb-0">Graduation Courses</p>
-                     </div>
-                  </label>
-               </div>
-            </div>
-            <div class="col-auto">
-               <div class="form-group form-radio">
-                  <input class="form-radio-input" type="radio" name="category" value="Hotels & Travels"
-                     id="radio_three">
-                  <label class="form-radio-label" for="radio_three">
-                     <div>
-                        <span><i class="fa fa-users"></i></span>
-                        <p class="mb-0">Professional Team</p>
-                     </div>
-                  </label>
-               </div>
-            </div>
-            <div class="col-auto">
-               <div class="form-group form-radio">
-                  <input class="form-radio-input" type="radio" name="category" value="Hotels & Travels" id="radio_four">
-                  <label class="form-radio-label" for="radio_four">
-                     <div>
-                        <span><i class="fa fa-briefcase" aria-hidden="true"></i></span>
-                        <p class="mb-0">Job Placement Support</p>
-                     </div>
-                  </label>
-               </div>
-            </div>
-            <div class="col-auto">
-               <div class="form-group form-radio">
-                  <input class="form-radio-input" type="radio" name="category" value="Hotels & Travels" id="radio_five">
-                  <label class="form-radio-label" for="radio_five">
-                     <div>
-                        <span><i class="fa fa-paint-brush"></i></span>
-                        <p class="mb-0">Art & Design</p>
-                     </div>
-                  </label>
-               </div>
-            </div>
-         </form>
+         
       </div>
    </div>
    <span class="left_skew"></span>
@@ -128,13 +46,12 @@ $url = str_replace("$basename", "", $_SERVER['PHP_SELF']);
                   <i class="fa fa-graduation-cap" aria-hidden="true"></i>
                </div>
                <h5 class="title">
-                  <a href="services.html">Undergraduate Study</a>
+                  <a>Undergraduate Study</a>
                </h5>
                <p class="mb-0 text fw-500">
                   <span class="thm-color-one">
                      <!-- $28 -->
                   </span>
-                  <a href="services.html">Read More..</a>
                </p>
             </div>
          </div>
@@ -145,13 +62,12 @@ $url = str_replace("$basename", "", $_SERVER['PHP_SELF']);
                   <i class="fa fa-desktop" aria-hidden="true"></i>
                </div>
                <h5 class="title">
-                  <a href="services.html">Books & Library</a>
+                  <a>Books & Library</a>
                </h5>
                <p class="mb-0 text fw-500">
                   <span class="thm-color-one">
                      <!-- $30 -->
                   </span>
-                  <a href="services.html">Read More..</a>
                </p>
             </div>
          </div>
@@ -161,13 +77,12 @@ $url = str_replace("$basename", "", $_SERVER['PHP_SELF']);
                   <i class="fa fa-gamepad" aria-hidden="true"></i>
                </div>
                <h5 class="title">
-                  <a href="services.html">Sports & Games</a>
+                  <a>Sports & Games</a>
                </h5>
                <p class="mb-0 text fw-500">
                   <span class="thm-color-one">
                      <!-- $22 -->
                   </span>
-                  <a href="services.html">Read More..</a>
                </p>
             </div>
          </div>
@@ -177,13 +92,12 @@ $url = str_replace("$basename", "", $_SERVER['PHP_SELF']);
                   <i class="fa fa-book"></i>
                </div>
                <h5 class="title">
-                  <a href="services.html">Free Courses</a>
+                  <a>Free Courses</a>
                </h5>
                <p class="mb-0 text fw-500">
                   <span class="thm-color-one">
                      <!-- $15 -->
                   </span>
-                  <a href="services.html">Read More..</a>
                </p>
             </div>
          </div>

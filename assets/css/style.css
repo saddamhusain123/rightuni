@@ -712,6 +712,7 @@ textarea.form-control-custom+i {
 
 /*listing_btn*/
 .listing_btn {
+    padding: 6px !important;
     display: flex;
     align-items: center;
     position: relative;
@@ -2869,12 +2870,19 @@ button {
     margin: 0;
 }
 
-.whatsapp_main{
+.whatsapp_main {
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0px;
+    color: var(--thm-white);
+    font-size: 22px;
     position: fixed;
     bottom: 80px;
-    right: 25px;
-    text-align: right;
+    right: 30px;
     z-index: 100;
+    border-radius: 6px;
 }
 
 .blog-image {

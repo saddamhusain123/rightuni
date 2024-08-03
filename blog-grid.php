@@ -2,8 +2,8 @@
 include 'header.php';
 include 'assets/db_confing.php';
 
-// To GET the blog table                                       
-$sql = "SELECT image, slug, title, description, created_at, status, deleted FROM blogs WHERE status = 1 AND deleted = 0";
+// Fetch the blog table
+$sql = "SELECT image, slug, title, description, created_at FROM blogs WHERE status = 1 AND deleted = 0 ";
 $result = $conn->query($sql);
 
 $blogs = [];
@@ -15,15 +15,16 @@ if ($result->num_rows > 0) {
 
 // Function to truncate text to a specified number of words
 function truncateText($text, $wordLimit) {
-   $words = explode(' ', $text);
-   if (count($words) > $wordLimit) {
-       $words = array_slice($words, 0, $wordLimit);
-       return implode(' ', $words) . '...';
-   }
-   return $text;
+    $words = explode(' ', $text);
+    if (count($words) > $wordLimit) {
+        $words = array_slice($words, 0, $wordLimit);
+        return implode(' ', $words) . '...';
+    }
+    return $text;
 }
 
 ?>
+
       <!-- Subheader Start -->
       <div class="section-bg section-padding subheader" style="background-image: url(assets/images/subheader.jpg);">
          <div class="container">
@@ -52,22 +53,23 @@ function truncateText($text, $wordLimit) {
                <?php foreach ($blogs as $blog): ?>
                <article class="col-lg-4 col-md-6 post">
                   <div class="post_wrapper">
-                     <div class="post_image">
-                        <a href="blog/<?php echo ($blog['slug']); ?>" class="d-flex h-100">
-                        <img src="admin/images/<?php echo ($blog['image']); ?>" alt="Rightuni" class="image-fit blog-image">
-                        </a>
-                     </div>
-                     <div class="post_caption">
-                        <div class="post_date">
-                           <?php echo date('d M', strtotime($blog['created_at'])); ?>
+                        <div class="post_image">
+                            <a href="blog\<?php echo htmlspecialchars($blog['slug']); ?>" class="d-flex h-100">
+                                <img src="admin/images/<?php echo htmlspecialchars($blog['image']); ?>" alt="Rightuni" class="image-fit blog-image">
+                            </a>
                         </div>
-                        <h2 class="post_title">
-                           <a href="blog/<?php echo ($blog['slug']); ?>"><?php echo truncateText(htmlspecialchars($blog['title']), 4); ?></a>
-                        </h2>
-                        <p class="post_desc mb-0"><?php echo truncateText(htmlspecialchars($blog['description']), 20); ?>
-</p>
-                     </div>
-                  </div>
+                        <div class="post_caption">
+                            <div class="post_date">
+                                <?php echo date('d M', strtotime($blog['created_at'])); ?>
+                            </div>
+                            <h2 class="post_title">
+                                <a href="blog\<?php echo htmlspecialchars($blog['slug']); ?>">
+                                    <?php echo truncateText(htmlspecialchars($blog['title']), 4); ?>
+                                </a>
+                            </h2>
+                            <p class="post_desc mb-0"><?php echo truncateText(htmlspecialchars(strip_tags($blog['description'])), 20); ?></p>
+                        </div>
+                    </div>
                </article>
                <?php endforeach; ?>
                <!-- item -->

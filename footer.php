@@ -114,6 +114,10 @@
          </div>
       </div>
       <!-- Copyright End -->
+      <a href="https://wa.me/919799946027" target="_blank" class="whatsapp_main ft-sticky">
+      <img alt="Rightuni" src="assets/images/whatsapp.png" class="whatsapp_img">
+      </a>
+
       <a href="#" data-target="html" class="back-to-top ft-sticky">
       <i class="fal fa-chevron-up"></i>
       </a>

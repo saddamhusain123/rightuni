@@ -111,12 +111,6 @@ $commaSeparatedStringMetaTitle = implode(",  ", $meta_titles);
     <base href="<?php echo htmlspecialchars($url); ?>" />
 </head>
    <body>
-
-    <div class="whatsapp_main">
-      <a href="https://wa.me/919799946027" target="_blank">
-        <img alt="Rightuni" src="assets/images/whatsapp.png" width="7%" class="whatsapp_img">
-      </a>
-    </div>
     
     <!-- Header Start -->
     <header class="header can-sticky">

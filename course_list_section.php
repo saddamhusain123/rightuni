@@ -22,7 +22,7 @@ $showViewAll = !in_array('universities', $uriSegments);
                      <li class="tab" data-cat-id="<?= $course_data['id']; ?>" onclick="fetchColleges('<?= $course_data['id']; ?>')"><?= $course_data['name']; ?></li>
                <?php } ?>
             </ul>
-            <div class="iconn icon"><i id="right" class="bi bi-chevron-right"></i></div>
+            <div class="iconn"><i id="right" class="bi bi-chevron-right"></i></div>
          </div>
          <!-- Course Name Tab ends --> 
 
@@ -86,11 +86,8 @@ function fetchColleges(id) {
                            </ul>
                         </div>
                         <div class="listing_footer">
-                           <div class="action_btn">
-                              <button type="button" class="listing_btn btn">
-                                 <a href="college/${college.slug}">Read More..</a>
-                              </button>
-                           </div>
+                              <a class="listing_btn btn" href="college/${college.slug}">Read More..</a>
+                           
                         </div>
                      </div>
                   </div>
@@ -124,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', () => {
    const tabsBox = document.querySelector(".tabs-box"),
       allTabs = tabsBox.querySelectorAll(".tab"),
-      arrowIcons = document.querySelectorAll(".icon i");
+      arrowIcons = document.querySelectorAll(".iconn i");
 
    let isDragging = false;
 
@@ -134,9 +131,9 @@ document.addEventListener('DOMContentLoaded', () => {
       arrowIcons[1].parentElement.style.display = maxScrollableWidth - tabsBox.scrollLeft <= 1 ? "none" : "flex";
    };
 
-   arrowIcons.forEach(icon => {
-      icon.addEventListener("click", () => {
-         const scrollAmount = icon.id === "left" ? -100 : 100;
+   arrowIcons.forEach(iconn => {
+      iconn.addEventListener("click", () => {
+         const scrollAmount = iconn.id === "left" ? -100 : 100;
          tabsBox.scrollLeft += scrollAmount;
          handleIcons();
       });

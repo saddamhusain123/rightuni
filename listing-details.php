@@ -130,31 +130,56 @@ if (isset($_POST['submit'])) {
                      <div class="sidebar_inner">
                         <!-- item -->
                         <div class="sidebar_widget">
-                           <div class="listing_details_box">
+                          <div class="listing_details_box">
                               <h4 class="bar_title">Fees Details</h4>
                               <p>
-                                 <b>Tution Fee :</b> <?php echo $row['tution_fee']; ?><br>
-                                 <b>Tution Fee State Quota :</b> <?php echo $row['tution_fee_state_quota']; ?><br>
-                                 <b>Tution Fee Mgmt Quota :</b> <?php echo $row['tution_fee_mgmt_quota']; ?><br>
-                                 <b>Other Fees :</b> <?php echo $row['other_fee_annual']; ?><br>
-                                 <b>One-time Fee :</b> <?php echo $row['one_time_fee']; ?><br>
-                                 <b>Refundable :</b> <?php echo $row['refundable_fee']; ?><br>
-                                 <b>Hostel A/c Fee :</b> <?php echo $row['hostel_fee_ac']; ?><br>
-                                 <b>Hostel Non A/c Fee :</b> <?php echo $row['hostel_fee_non_ac']; ?><br>
-                                 <b>Mess Fee INR :</b> <?php echo $row['mess_fee_inr']; ?>
+                                  <?php if (!empty($row['tution_fee'])): ?>
+                                      <b>Tution Fee :</b> <?php echo htmlspecialchars($row['tution_fee']); ?><br>
+                                  <?php endif; ?>
+
+                                  <?php if (!empty($row['tution_fee_state_quota'])): ?>
+                                      <b>Tution Fee State Quota :</b> <?php echo htmlspecialchars($row['tution_fee_state_quota']); ?><br>
+                                  <?php endif; ?>
+
+                                  <?php if (!empty($row['tution_fee_mgmt_quota'])): ?>
+                                      <b>Tution Fee Mgmt Quota :</b> <?php echo htmlspecialchars($row['tution_fee_mgmt_quota']); ?><br>
+                                  <?php endif; ?>
+
+                                  <?php if (!empty($row['other_fee_annual'])): ?>
+                                      <b>Other Fees :</b> <?php echo htmlspecialchars($row['other_fee_annual']); ?><br>
+                                  <?php endif; ?>
+
+                                  <?php if (!empty($row['one_time_fee'])): ?>
+                                      <b>One-time Fee :</b> <?php echo htmlspecialchars($row['one_time_fee']); ?><br>
+                                  <?php endif; ?>
+
+                                  <?php if (!empty($row['refundable_fee'])): ?>
+                                      <b>Refundable :</b> <?php echo htmlspecialchars($row['refundable_fee']); ?><br>
+                                  <?php endif; ?>
+
+                                  <?php if (!empty($row['hostel_fee_ac'])): ?>
+                                      <b>Hostel A/c Fee :</b> <?php echo htmlspecialchars($row['hostel_fee_ac']); ?><br>
+                                  <?php endif; ?>
+
+                                  <?php if (!empty($row['hostel_fee_non_ac'])): ?>
+                                      <b>Hostel Non A/c Fee :</b> <?php echo htmlspecialchars($row['hostel_fee_non_ac']); ?><br>
+                                  <?php endif; ?>
+
+                                  <?php if (!empty($row['mess_fee_inr'])): ?>
+                                      <b>Mess Fee INR :</b> <?php echo htmlspecialchars($row['mess_fee_inr']); ?>
+                                  <?php endif; ?>
                               </p>
-                           </div>
-                        </div>
-                        <!-- item -->
+                          </div>
+                      </div>
+                      <!-- item -->
                         <div class="sidebar_widget">
-                          <h5 class="widget_title"><i class="fal fa-map-marker-alt icon"></i> Location</h5>
+                          <h5 class="widget_title">Location</h5>
                           <div class="widget_inner">
                             <ul class="contact">
                               <li>
-                                <a href="#">
-                                  <i class="fal fa-map-marker-alt"></i>
-                                  <?php echo $row['address'] . ', ' . $row['city'] . ', ' . $row['state_name']; ?>
-                                </a>
+                                <p>
+                                   <?php echo $row['address'] . ', ' . $row['city'] . ', ' . $row['state_name']; ?>
+                                </p>
                               </li>
                             </ul>
                           </div>
@@ -213,8 +238,6 @@ if (isset($_POST['submit'])) {
                                     </div>
                                 </div>
                             <?php
-                            } else {
-                                echo "<p>No images found</p>";
                             }
                         }
                         ?>    
