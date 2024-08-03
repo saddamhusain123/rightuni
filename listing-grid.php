@@ -70,7 +70,7 @@ if (isset($_GET['id'])) {
                   <div class="listing_box">
                      <div class="listing_image">
                         <a href="college/<?php echo ($college_data['slug']); ?>" class="d-flex h-100">
-                           <img src="admin/images/<?php echo ($college_data['image']); ?>" alt="img" class="image-fit">
+                           <img src="admin/images/<?php echo ($college_data['image']); ?>" alt="Rightuni" class="image-fit">
                         </a>
                      </div>
                      <div class="listing_caption">

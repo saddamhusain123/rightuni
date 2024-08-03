@@ -111,7 +111,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-6">
-                <img src="assets/images/forgot-password.png">
+                <img alt="Rightuni" src="assets/images/forgot-password.png">
             </div>
             <div class="col-lg-6">
                 <div class="sign_in_up_box thm-bg-color-light">

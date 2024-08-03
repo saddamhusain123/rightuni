@@ -206,7 +206,7 @@ if (isset($_POST['submit'])) {
                                                 $image_url = htmlspecialchars($row_gallery["image"]);
                                             ?>
                                                 <li class="col-4">
-                                                    <img src="admin/images/<?= $image_url ?>" alt="Gallery Image" class="image-fit">
+                                                    <img src="admin/images/<?= $image_url ?>" alt="Rightuni" class="image-fit">
                                                 </li>
                                             <?php } ?>
                                         </ul>
@@ -229,7 +229,7 @@ if (isset($_POST['submit'])) {
                                 <li class="comment">
                                   <article>
                                     <div class="comment_image">
-                                      <img src="assets/images/blog/author_1.jpg" alt="img" class="image-fit">
+                                      <img src="assets/images/blog/author_1.jpg" alt="Rightuni" class="image-fit">
                                       <button type="button" class="reply_btn thm-btn btn-small thm-bg-color-two">Reply</button>
                                     </div>
                                     <div class="comment_text">

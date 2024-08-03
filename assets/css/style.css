@@ -2303,6 +2303,7 @@ textarea.form-control-custom+i {
     overflow: hidden;
     text-align: center;
     margin-bottom: 30px;
+    height: 300px;
 }
 
 .contact_info_box:before {
@@ -2853,18 +2854,15 @@ button {
 .getallcollege {
     padding: 5px 30px;
     background-color: #f4792c;
-    border: 2px solid #0056b3; 
     color: white;
     font-size: 18px; 
     border-radius: 21px; 
-    background-image: linear-gradient(to right top, #86a8e7, #ad99e4, #d586d0, #f374ab, #ff6a7a, #ff6a7a, #ff6a7a, #ff6a7a, #f374ab, #d586d0, #ad99e4, #86a8e7);
     transition: all 0.3s ease;
 }
 
 .getallcollege:hover {
-    background-color: #0056b3; /* Darken background on hover */
+    background-color: #000; /* Darken background on hover */
     color: white;
-    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.5); /* Shadow effect */
 }
 
 .getallcollege h4 {

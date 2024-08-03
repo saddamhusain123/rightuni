@@ -54,7 +54,7 @@ function truncateText($text, $wordLimit) {
                   <div class="post_wrapper">
                      <div class="post_image">
                         <a href="blog/<?php echo ($blog['slug']); ?>" class="d-flex h-100">
-                        <img src="admin/images/<?php echo ($blog['image']); ?>" alt="img" class="image-fit blog-image">
+                        <img src="admin/images/<?php echo ($blog['image']); ?>" alt="Rightuni" class="image-fit blog-image">
                         </a>
                      </div>
                      <div class="post_caption">

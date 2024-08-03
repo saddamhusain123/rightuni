@@ -7,7 +7,7 @@ $slug = isset($_GET['slug']) ? $conn->real_escape_string($_GET['slug']) : '';
 
 if ($slug) {
     // Query to get the blog details by slug
-    $sql = "SELECT image, title, description, created_at FROM blogs WHERE slug = '$slug'";
+    $sql = "SELECT image, title, description, created_at FROM blogs WHERE slug = '$slug' AND status = 1 AND deleted = 0";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
@@ -50,7 +50,7 @@ if ($slug) {
                         <!-- post image -->
                         <div class="post_image">
                            <a class="d-flex h-100">
-                           <img src="admin/images/<?php echo ($blog['image']); ?>" alt="img" class="image-fit">
+                           <img src="admin/images/<?php echo ($blog['image']); ?>" alt="Rightuni" class="image-fit">
                            </a>
                            <div class="post_date">
                               20 <br /> Mar

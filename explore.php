@@ -27,7 +27,7 @@
                   <div class="explore_box">
                      <div class="explore_image">
                         <a href="explore.html" class="d-flex h-100">
-                        <img src="assets/images/explore/1.jpg" alt="img" class="image-fit">
+                        <img src="assets/images/explore/1.jpg" alt="Rightuni" class="image-fit">
                         </a>
                      </div>
                      <div class="explore_text">
@@ -48,7 +48,7 @@
                   <div class="explore_box">
                      <div class="explore_image">
                         <a href="explore.html" class="d-flex h-100">
-                        <img src="assets/images/explore/2.jpg" alt="img" class="image-fit">
+                        <img src="assets/images/explore/2.jpg" alt="Rightuni" class="image-fit">
                         </a>
                      </div>
                      <div class="explore_text">
@@ -69,7 +69,7 @@
                   <div class="explore_box">
                      <div class="explore_image">
                         <a href="explore.html" class="d-flex h-100">
-                        <img src="assets/images/explore/3.jpg" alt="img" class="image-fit">
+                        <img src="assets/images/explore/3.jpg" alt="Rightuni" class="image-fit">
                         </a>
                      </div>
                      <div class="explore_text">
@@ -90,7 +90,7 @@
                   <div class="explore_box">
                      <div class="explore_image">
                         <a href="explore.html" class="d-flex h-100">
-                        <img src="assets/images/explore/4.jpg" alt="img" class="image-fit">
+                        <img src="assets/images/explore/4.jpg" alt="Rightuni" class="image-fit">
                         </a>
                      </div>
                      <div class="explore_text">
@@ -111,7 +111,7 @@
                   <div class="explore_box">
                      <div class="explore_image">
                         <a href="explore.html" class="d-flex h-100">
-                        <img src="assets/images/explore/5.jpg" alt="img" class="image-fit">
+                        <img src="assets/images/explore/5.jpg" alt="Rightuni" class="image-fit">
                         </a>
                      </div>
                      <div class="explore_text">
@@ -132,7 +132,7 @@
                   <div class="explore_box">
                      <div class="explore_image">
                         <a href="explore.html" class="d-flex h-100">
-                        <img src="assets/images/explore/6.jpg" alt="img" class="image-fit">
+                        <img src="assets/images/explore/6.jpg" alt="Rightuni" class="image-fit">
                         </a>
                      </div>
                      <div class="explore_text">
@@ -153,7 +153,7 @@
                   <div class="explore_box">
                      <div class="explore_image">
                         <a href="explore.html" class="d-flex h-100">
-                        <img src="assets/images/explore/7.jpg" alt="img" class="image-fit">
+                        <img src="assets/images/explore/7.jpg" alt="Rightuni" class="image-fit">
                         </a>
                      </div>
                      <div class="explore_text">
@@ -174,7 +174,7 @@
                   <div class="explore_box">
                      <div class="explore_image">
                         <a href="explore.html" class="d-flex h-100">
-                        <img src="assets/images/explore/8.jpg" alt="img" class="image-fit">
+                        <img src="assets/images/explore/8.jpg" alt="Rightuni" class="image-fit">
                         </a>
                      </div>
                      <div class="explore_text">
@@ -195,7 +195,7 @@
                   <div class="explore_box">
                      <div class="explore_image">
                         <a href="explore.html" class="d-flex h-100">
-                        <img src="assets/images/explore/9.jpg" alt="img" class="image-fit">
+                        <img src="assets/images/explore/9.jpg" alt="Rightuni" class="image-fit">
                         </a>
                      </div>
                      <div class="explore_text">
@@ -216,7 +216,7 @@
                   <div class="explore_box">
                      <div class="explore_image">
                         <a href="explore.html" class="d-flex h-100">
-                        <img src="assets/images/explore/10.jpg" alt="img" class="image-fit">
+                        <img src="assets/images/explore/10.jpg" alt="Rightuni" class="image-fit">
                         </a>
                      </div>
                      <div class="explore_text">
@@ -237,7 +237,7 @@
                   <div class="explore_box">
                      <div class="explore_image">
                         <a href="explore.html" class="d-flex h-100">
-                        <img src="assets/images/explore/11.jpg" alt="img" class="image-fit">
+                        <img src="assets/images/explore/11.jpg" alt="Rightuni" class="image-fit">
                         </a>
                      </div>
                      <div class="explore_text">
@@ -258,7 +258,7 @@
                   <div class="explore_box">
                      <div class="explore_image">
                         <a href="explore.html" class="d-flex h-100">
-                        <img src="assets/images/explore/12.jpg" alt="img" class="image-fit">
+                        <img src="assets/images/explore/12.jpg" alt="Rightuni" class="image-fit">
                         </a>
                      </div>
                      <div class="explore_text">

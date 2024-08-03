@@ -114,7 +114,7 @@ $commaSeparatedStringMetaTitle = implode(",  ", $meta_titles);
 
     <div class="whatsapp_main">
       <a href="https://wa.me/919799946027" target="_blank">
-        <img src="assets/images/whatsapp.png" width="7%" class="whatsapp_img">
+        <img alt="Rightuni" src="assets/images/whatsapp.png" width="7%" class="whatsapp_img">
       </a>
     </div>
     
@@ -125,8 +125,8 @@ $commaSeparatedStringMetaTitle = implode(",  ", $meta_titles);
             <!-- logo -->
             <div class="logo">
                 <a href="home" class="d-flex h-100">
-                    <img src="assets/images/RightUNI-logo.png" alt="logo" class="image-fit-contain">
-                    <img src="assets/images/RightUNI-logo.png" alt="logo" class="image-fit-contain">
+                    <img src="assets/images/RightUNI-logo.png" alt="RightUni" class="image-fit-contain">
+                    <img src="assets/images/RightUNI-logo.png" alt="RightUni" class="image-fit-contain">
                 </a>
             </div>
             <!-- logo -->

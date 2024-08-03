@@ -129,7 +129,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                </div>
                <div class="col-lg-5">
                   <div class="contact_image">
-                     <img src="assets/images/fores.jpg" alt="img" class="image-fit">
+                     <img src="assets/images/fores.jpg" alt="Rightuni" class="image-fit">
                   </div>
                </div>
             </div>

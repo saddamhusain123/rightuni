@@ -162,7 +162,7 @@ include 'header.php'
                <div class="px-3 slide_item">
                   <div class="testimonial_item">
                      <div class="author_image">
-                        <img src="assets/images/testimonials/1.jpg" alt="img" class="image-fit">
+                        <img src="assets/images/testimonials/1.jpg" alt="Rightuni" class="image-fit">
                      </div>
                      <div class="testimonial_text">
                         <p class="comment">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc iaculis hendrerit elementum. </p>
@@ -177,7 +177,7 @@ include 'header.php'
                <div class="px-3 slide_item">
                   <div class="testimonial_item">
                      <div class="author_image">
-                        <img src="assets/images/testimonials/2.jpg" alt="img" class="image-fit">
+                        <img src="assets/images/testimonials/2.jpg" alt="Rightuni" class="image-fit">
                      </div>
                      <div class="testimonial_text">
                         <p class="comment">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc iaculis hendrerit elementum. </p>
@@ -192,7 +192,7 @@ include 'header.php'
                <div class="px-3 slide_item">
                   <div class="testimonial_item">
                      <div class="author_image">
-                        <img src="assets/images/testimonials/3.jpg" alt="img" class="image-fit">
+                        <img src="assets/images/testimonials/3.jpg" alt="Rightuni" class="image-fit">
                      </div>
                      <div class="testimonial_text">
                         <p class="comment">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc iaculis hendrerit elementum. </p>
@@ -207,7 +207,7 @@ include 'header.php'
                <div class="px-3 slide_item">
                   <div class="testimonial_item">
                      <div class="author_image">
-                        <img src="assets/images/testimonials/4.jpg" alt="img" class="image-fit">
+                        <img src="assets/images/testimonials/4.jpg" alt="Rightuni" class="image-fit">
                      </div>
                      <div class="testimonial_text">
                         <p class="comment">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc iaculis hendrerit elementum. </p>
