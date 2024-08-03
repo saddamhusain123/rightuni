@@ -2764,8 +2764,8 @@ ul.large-ads-item{
 	justify-content: flex-start;
 }
 .navbar .navbar-collapse .navbar-nav > li.dropdown.profile > a .profile-img {
-	width: 60px;
-	height: 60px;
+	width: 83px;
+    height: 63px;
 	border-radius: 50%;
 }
 .navbar .navbar-collapse .navbar-nav > li.dropdown.profile > a .title {
@@ -3055,8 +3055,8 @@ aside.app-sidebar .sidebar-header .sidebar-brand {
 	color: #444;
 }
 aside.app-sidebar .sidebar-header .sidebar-brand img {
-	width: 70px;
-	height: 70px;
+	width: 132px;
+    height: 108px;
 	text-align: center;
 	margin-top: 0px;
 }
