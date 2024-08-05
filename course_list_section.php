@@ -86,7 +86,7 @@ function fetchColleges(id) {
                            </ul>
                         </div>
                         <div class="listing_footer">
-                              <a class="listing_btn btn" href="college/${college.slug}">Read More..</a>
+                              <a class="listing_btn btn" href="college/${college.slug}">Read More</a>
                            
                         </div>
                      </div>
