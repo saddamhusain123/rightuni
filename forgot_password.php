@@ -113,7 +113,7 @@ function sendPasswordResetEmail($email, $token) {
                             </div>
                             
                             <div class="col-md-12">
-                                <input type="submit" name="submit" class="btn w-100" style="background-color: #f4792c; color: white;" value="Reset Password">
+                                <input type="submit" name="submit" class="btn w-100" style="background-color: #23b67b; color: white;" value="Reset Password">
                             </div>
                         </div>
                     </form>
