@@ -231,7 +231,7 @@ if (isset($_POST['submit'])) {
                                                 $image_url = htmlspecialchars($row_gallery["image"]);
                                             ?>
                                                 <li class="col-4">
-                                                    <img src="admin/images/<?= $image_url ?>" alt="Rightuni" class="image-fit">
+                                                    <img src="admin/images/college_gallery/<?= $image_url ?>" alt="Rightuni" class="image-fit">
                                                 </li>
                                             <?php } ?>
                                         </ul>
