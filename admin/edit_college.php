@@ -57,6 +57,28 @@ while ($course_row = $course_old_data_result->fetch_assoc()) {
 }
 $row_college['old_courses'] = $selected_courses;
 
+$college_gallery = "SELECT * FROM college_gallery WHERE college_id = '$cid' AND deleted != 1";
+$gallery_result = $mysqli->query($college_gallery);
+
+$images = [];
+
+if ($gallery_result) {
+    while ($row = $gallery_result->fetch_assoc()) {
+        // Assuming the column for image URL is named 'image_url'
+        if (!empty($row['image'])) {
+            $images[] = $row['image'];
+        }
+    }
+} else {
+    echo "Query failed: " . $mysqli->error;
+}
+
+// Now $images contains all the image URLs or paths
+// echo "<pre>"; print_r($images); exit;
+
+
+
+// print_r($row_college1);exit;
 // Fetch courses and states for selection
 $cat_qry = "SELECT * FROM courses WHERE deleted != 1 AND id != 1 ORDER BY name";
 $cat_result = $mysqli->query($cat_qry);
@@ -181,6 +203,67 @@ if (isset($_POST['submit'])) {
         exit;
     }
 
+
+
+ if (isset($_FILES['college_gallery_image'])) {
+    // Get the college ID from the previous insert or form data
+    
+
+    // Directory where files will be stored
+    $upload_directory = 'images/college_gallery/'; // Ensure this directory exists and is writable
+
+    // Iterate through each file
+    $total_files = count($_FILES['college_gallery_image']['name']);
+    for ($i = 0; $i < $total_files; $i++) {
+        $file_name = $_FILES['college_gallery_image']['name'][$i];
+        $file_tmp = $_FILES['college_gallery_image']['tmp_name'][$i];
+        $file_type = $_FILES['college_gallery_image']['type'][$i];
+        $file_error = $_FILES['college_gallery_image']['error'][$i];
+        $file_size = $_FILES['college_gallery_image']['size'][$i];
+
+        if ($file_error === UPLOAD_ERR_OK) {
+            // Sanitize file name
+            $file_name = mysqli_real_escape_string($mysqli, $file_name);
+            
+            // Move the file to the desired directory
+            $target_file = $upload_directory . basename($file_name);
+            if (move_uploaded_file($file_tmp, $target_file)) {
+                // Prepare and execute the SQL insert query
+                $sql = "INSERT INTO college_gallery(`college_id`, `image`, `created_at`) 
+                        VALUES ('$cid', '$file_name', NOW())";
+                mysqli_query($mysqli, $sql);
+            } else {
+                echo "Failed to move uploaded file: " . htmlspecialchars($file_name);
+            }
+        } else {
+            echo "File upload error: " . $file_error;
+        }
+    }
+}
+
+
+
+
+if (isset($_POST['removed_files'])) {
+    // Sanitize and process the list of removed files
+    $removed_files = explode(',', $_POST['removed_files']);
+    
+    // Prepare and execute a statement for each removed file
+    foreach ($removed_files as $file_name) {
+        // Trim any extra whitespace and sanitize the file name
+        $file_name = trim($file_name);
+        $file_name = mysqli_real_escape_string($mysqli, $file_name);
+
+        // Construct the SQL query to mark the file as deleted
+        $sql90 = "UPDATE college_gallery SET deleted = 1 WHERE image = '$file_name' AND college_id = '$cid'";
+        
+        // Execute the SQL query
+        if (!mysqli_query($mysqli, $sql90)) {
+            // Handle errors in SQL execution
+            echo "Error updating record: " . mysqli_error($mysqli);
+        }
+    }
+}
     $_SESSION['msg'] = "11";
     header("Location: colleges.php");
     exit;
@@ -313,18 +396,44 @@ if (isset($_POST['submit'])) {
                     </div>
                   </div>
                 </div>
-              <div class="col-md-6">
-                <label class="col-md-12 control-label">Gallery Image :-
-                  <p class="control-label-help">(Recommended resolution: 500x400, 600x500, 700x600 OR width greater than height)</p>
-                </label>
-                <div class="fileupload_block">
-                    <input type="hidden" name="featured_image_url" value="">
-                  <input type="file" name="news_gallery_image[]" accept=".png, .jpg, .jpeg, .svg, .gif" value="" id="fileupload" multiple>
-                  <div class="fileupload_img featured_image"><img type="image" src="assets/images/landscape.jpg" style="width: 120px;height: 90px" alt="Featured image" /></div> 
-                </div>
-              </div>
-            </div>
+             
+ <div class="col-md-6">
+    <label class="col-md-12 control-label">Gallery Image:
+        <p class="control-label-help">(Recommended resolution: 500x400, 600x500, 700x600 OR width greater than height)</p>
+    </label>
+    <div class="fileupload_block">
+        <input type="file" id="fileInput" name="college_gallery_image[]" accept=".png, .jpg, .jpeg, .svg, .gif" multiple>
+        
+        <input type="hidden" id="removedFiles" name="removed_files">
 
+        <div class="fileupload_img featured_image" id="fileList">
+            <?php foreach ($images as $image): ?>
+                <div class="file-item" data-file="<?php echo htmlspecialchars($image); ?>">
+                    <a href="images/college_gallery/<?php echo htmlspecialchars($image); ?>" target="_blank">
+                        <p><?php echo htmlspecialchars($image); ?></p>
+                    </a>
+                    <i class="fa fa-trash" id="remove-file"></i>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</div>
+
+<style>
+        .file-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .file-item p {
+            margin: 0;
+            margin-right: 10px;
+        }
+        .file-item i {
+            cursor: pointer;
+            color: red;
+        }
+    </style>
 
 
             <div class="row">
@@ -433,7 +542,7 @@ if (isset($_POST['submit'])) {
             <div class="row">
               <div class="col-md-6">
                 <label class="col-md-12 control-label">Specialization :-</label><br/><br/>
-                <textarea name="specialization" id="specialization" value=""  class="form-control"> <?= htmlspecialchars($row_college['desc']) ?></textarea>
+                <textarea name="specialization" id="specialization" value=""  class="form-control"> <?= htmlspecialchars($row_college['spacialization']) ?></textarea>
                 
                 <script>
                   CKEDITOR.replace( 'specialization' ,{
@@ -445,7 +554,7 @@ if (isset($_POST['submit'])) {
               </div>
               <div class="col-md-6">
                 <label class="col-md-12 control-label">Admission Process :-</label><br/><br/>
-                <textarea name="admission_process" id="admission_process" value=""  class="form-control"> <?= htmlspecialchars($row_college['spacialization']) ?></textarea>
+                <textarea name="admission_process" id="admission_process" value=""  class="form-control"> <?= htmlspecialchars($row_college['admission_process']) ?></textarea>
                 
                 <script>
                   CKEDITOR.replace( 'admission_process' ,{
@@ -467,11 +576,11 @@ if (isset($_POST['submit'])) {
         </div>
       </form>
     </div>
-  </div>
+  </div><?php include("includes/footer.php");?> 
 </div>
 </div>
 
-<?php include("includes/footer.php");?> 
+
 
 <script type="text/javascript">
   // Get youtube video size start
@@ -598,3 +707,25 @@ if (isset($_POST['submit'])) {
               enforceWhitelist: false
             });
           </script>
+
+          <script src="path/to/font-awesome/js/all.min.js"></script> <!-- Include FontAwesome for icons -->
+   <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const fileList = document.getElementById('fileList');
+        const removedFilesInput = document.getElementById('removedFiles');
+        
+        fileList.addEventListener('click', function(e) {
+            if (e.target.id === 'remove-file') {
+                const fileItem = e.target.parentElement;
+                const fileName = fileItem.getAttribute('data-file');
+                
+                // Get current removed files and append the new one
+                let removedFiles = removedFilesInput.value ? removedFilesInput.value.split(',') : [];
+                removedFiles.push(fileName);
+                removedFilesInput.value = removedFiles.join(',');
+                
+                fileItem.remove();
+            }
+        });
+    });
+</script>

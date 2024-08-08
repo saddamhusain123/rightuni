@@ -137,18 +137,18 @@ else{
               <div class="title">Dashboard</div>
             </a> 
           </li>
-          <li <?php if($currentFile=="courses.php" or $currentFile=="add_news.php" or $currentFile=="edit_news.php" or (isset($current_page) AND $current_page=='news')){?>class="active"<?php }?>> <a href="courses.php">
+          <li <?php if($currentFile=="courses.php" or $currentFile=="add_course.php"  or (isset($current_page) AND $current_page=='news')){?>class="active"<?php }?>> <a href="courses.php">
           <div class="icon"> <i class="fa fa-newspaper-o" aria-hidden="true"></i> </div>
           <div class="title">Courses</div>
         </a> 
       </li>
-          <li <?php if($currentFile=="colleges.php" or $currentFile=="add_news.php" or $currentFile=="edit_news.php" or (isset($current_page) AND $current_page=='news')){?>class="active"<?php }?>> <a href="colleges.php">
+          <li <?php if($currentFile=="colleges.php" or $currentFile=="add_college.php" or $currentFile=="edit_college.php" or (isset($current_page) AND $current_page=='news')){?>class="active"<?php }?>> <a href="colleges.php">
           <div class="icon"> <i class="fa fa-newspaper-o" aria-hidden="true"></i> </div>
           <div class="title">Colleges</div>
         </a> 
       </li>
 
-       <li <?php if($currentFile=="manage_blog.php" or $currentFile=="manage_blog.php" or $currentFile=="manage_blog.php" or (isset($current_page) AND $current_page=='news')){?>class="active"<?php }?>> 
+       <li <?php if($currentFile=="blogs.php" or $currentFile=="manage_blog.php" or (isset($current_page) AND $current_page=='news')){?>class="active"<?php }?>> 
           <a href="manage_blog.php">
             <div class="icon"> <i class="fa fa-newspaper-o" aria-hidden="true"></i> </div>
             <div class="title">Blogs</div>

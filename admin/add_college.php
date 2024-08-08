@@ -31,7 +31,6 @@ $State_result = mysqli_query($mysqli, $state_qry);
 
 if (isset($_POST['submit'])) {
 
- 
     if ($_POST['featured_image_url'] == '') {
         $ext = pathinfo($_FILES['news_featured_image']['name'], PATHINFO_EXTENSION);
         $news_featured_image = rand(0, 99999) . "_" . date('dmYhis') . "." . $ext;
@@ -86,7 +85,8 @@ if (isset($_POST['submit'])) {
 
     $cat_row = mysqli_fetch_array($cat_result);
        // Check if the form is submitted and the course_id is set
-    if(isset($_POST['course_id'])) {
+   
+ if(isset($_POST['course_id'])) {
         // Retrieve the selected courses
         $selected_courses = $_POST['course_id'];
         
@@ -108,7 +108,6 @@ if (isset($_POST['submit'])) {
         
         
     }
-
     $address = $_POST['address'];
     $state_id = $_POST['state_id'];
     $city = $_POST['city'];
@@ -169,26 +168,47 @@ if (isset($_POST['submit'])) {
                 mysqli_query($mysqli, $feedetails);
 
 
-//     $meta_keyword = $_POST['meta_keyword'];
-//     $meta_title = $_POST['meta_title'];
-//     $meta_description = $_POST['meta_description'];
-//     $module = ['colleges'];
 
+  
+// echo "<pre>";
+// print_r($_FILES['college_gallery_image']);
+// exit;
+ if (isset($_FILES['college_gallery_image'])) {
+    // Get the college ID from the previous insert or form data
+    $college_id = addslashes($last_id);
 
+    // Directory where files will be stored
+    $upload_directory = 'images/college_gallery/'; // Ensure this directory exists and is writable
 
-//     $meta_details = "INSERT INTO meta_data('meta_title', 'meta_keywords', 'meta_description', 'module', 'module_id')
-//             VALUES(
-//               '" . addslashes($meta_title). "',
-//               '" . addslashes($meta_keyword) . "',
-//               '" . addslashes($meta_description). "',
-//               '" . addslashes($module). "',
-//               '" . addslashes($last_id). "'
-//           )";
+    // Iterate through each file
+    $total_files = count($_FILES['college_gallery_image']['name']);
+    for ($i = 0; $i < $total_files; $i++) {
+        $file_name = $_FILES['college_gallery_image']['name'][$i];
+        $file_tmp = $_FILES['college_gallery_image']['tmp_name'][$i];
+        $file_type = $_FILES['college_gallery_image']['type'][$i];
+        $file_error = $_FILES['college_gallery_image']['error'][$i];
+        $file_size = $_FILES['college_gallery_image']['size'][$i];
 
-// mysqli_query($mysqli, $meta_details);
-
-
-
+        if ($file_error === UPLOAD_ERR_OK) {
+            // Sanitize file name
+            $file_name = mysqli_real_escape_string($mysqli, $file_name);
+            
+            // Move the file to the desired directory
+            $target_file = $upload_directory . basename($file_name);
+            if (move_uploaded_file($file_tmp, $target_file)) {
+                // Prepare and execute the SQL insert query
+                $sql = "INSERT INTO college_gallery(`college_id`, `image`, `created_at`) 
+                        VALUES ('$college_id', '$file_name', NOW())";
+                mysqli_query($mysqli, $sql);
+            } else {
+                echo "Failed to move uploaded file: " . htmlspecialchars($file_name);
+            }
+        } else {
+            echo "File upload error: " . $file_error;
+        }
+    }
+}
+       
     $_SESSION['msg'] = "10";
     header("Location: colleges.php");
     exit;
@@ -315,19 +335,57 @@ if (isset($_POST['submit'])) {
                     </div>
                   </div>
                 </div>
-              <div class="col-md-6">
-                <label class="col-md-12 control-label">Gallery Image :-
-                  <p class="control-label-help">(Recommended resolution: 500x400, 600x500, 700x600 OR width greater than height)</p>
-                </label>
-                <div class="fileupload_block">
-                    <input type="hidden" name="featured_image_url" value="">
-                  <input type="file" name="news_gallery_image[]" accept=".png, .jpg, .jpeg, .svg, .gif" value="" id="fileupload" multiple>
-                  <div class="fileupload_img featured_image"><img type="image" src="assets/images/landscape.jpg" style="width: 120px;height: 90px" alt="Featured image" /></div> 
-                </div>
-              </div>
-            </div>
 
 
+          
+
+    <div class="col-md-6">
+    <label class="col-md-12 control-label">Gallery Image:
+        <p class="control-label-help">(Recommended resolution: 500x400, 600x500, 700x600 OR width greater than height)</p>
+    </label>
+    <div class="fileupload_block">
+        <input type="file" name="college_gallery_image[]" accept=".png, .jpg, .jpeg, .svg, .gif" multiple>
+        <div class="fileupload_img featured_image">
+                      <img type="image" src="assets/images/landscape.jpg" style="width: 120px; height: 90px" alt="Featured image"/>
+                    </div>
+    </div>
+</div>
+
+
+             <style type="text/css">
+  .fileupload_img img {
+    margin: 5px;
+    width: 120px;
+    height: 90px;
+    object-fit: cover;
+  }
+
+  #preview-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    margin-top: 10px;
+  }
+
+  .control-label-help {
+    font-size: 0.875rem;
+    color: #6c757d;
+  }
+
+  .fileupload_block {
+    margin-bottom: 20px;
+  }
+
+  .fileupload_img {
+    margin-top: 10px;
+  }
+
+  .form-control {
+    margin-top: 5px;
+  }
+</style>
 
             <div class="row">
               <div class="col-md-6">
@@ -475,7 +533,7 @@ if (isset($_POST['submit'])) {
 
 </div>
 
-
+<!-- 
 <script type="text/javascript">
 	// Get youtube video size start
   $.extend({
@@ -541,7 +599,7 @@ if (isset($_POST['submit'])) {
       });
        
      });
-   </script>
+   </script> -->
 
    <script type="text/javascript">
   // Get featured image
@@ -601,3 +659,70 @@ if (isset($_POST['submit'])) {
               enforceWhitelist: false
             });
           </script>
+
+          <script>
+  document.getElementById('add_more_photos').addEventListener('click', function() {
+    document.getElementById('gallery_upload').click();
+  });
+
+  document.getElementById('gallery_upload').addEventListener('change', function(event) {
+    const files = event.target.files;
+    const preview = document.getElementById('gallery_preview');
+    preview.innerHTML = ''; // Clear previous previews
+
+    Array.from(files).forEach(file => {
+      if (file && file.type.startsWith('image/')) {
+        const reader = new FileReader();
+        
+        reader.onload = function(e) {
+          const img = document.createElement('img');
+          img.src = e.target.result;
+          img.style.width = '120px';
+          img.style.height = '90px';
+          img.style.marginRight = '5px';
+          img.style.marginBottom = '5px';
+          preview.appendChild(img);
+        };
+
+        reader.readAsDataURL(file);
+      } else {
+        alert('Only image files are allowed!');
+      }
+    });
+  });
+</script>
+
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function() {
+    const fileInput = document.getElementById('college_gallery_image');
+    const previewContainer = document.getElementById('preview-container');
+    const addMoreButton = document.getElementById('add-more');
+
+    // Function to handle file selection and preview images
+    function handleFiles(files) {
+        for (const file of files) {
+            if (file && file.type.startsWith('image/')) {
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    const imgElement = document.createElement('img');
+                    imgElement.src = e.target.result;
+                    previewContainer.appendChild(imgElement);
+                };
+                
+                reader.readAsDataURL(file);
+            }
+        }
+    }
+
+    // Handle file input change event
+    fileInput.addEventListener('change', function() {
+        handleFiles(fileInput.files);
+    });
+
+    // Handle 'Add More Photos' button click event
+    addMoreButton.addEventListener('click', function() {
+        fileInput.click();  // Trigger the file input click
+    });
+});
+</script>
