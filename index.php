@@ -17,7 +17,7 @@ $url = str_replace("$basename", "", $_SERVER['PHP_SELF']);
                <span class="thm-color-one fw-lighter"> Near By You.</span>
             </h1>
             <p class="subtitle">The Best Learning University</p><br>
-            <p style="font-size: 18px" class="subtitle" >RightUni is a premier platform offering exhaustive college listings and detailed insights into various institutions. It provides an intuitive interface for exploring courses, campus amenities, and admission criteria, helping students make informed decisions.</p>
+            <p style="font-size: 18px; background-color: rgba(4, 4, 4, 0.30);" class="subtitle" >RightUni is a premier platform offering exhaustive college listings and detailed insights into various institutions. It provides an intuitive interface for exploring courses, campus amenities, and admission criteria, helping students make informed decisions.</p>
          </div>
          
       </div>
