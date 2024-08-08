@@ -195,7 +195,7 @@
                </div>
                <div class="col-lg-4">
                   <div class="contact_image">
-                     <img src="assets/images/contact_image.jpg" alt="img" class="image-fit">
+                     <img src="assets/images/contact_image.jpg" alt="Rightuni" class="image-fit">
                   </div>
                </div>
             </div>

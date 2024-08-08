@@ -83,7 +83,7 @@ function fetchColleges(id) {
                             <div class="listing_box">
                                 <div class="listing_image">
                                     <a href="college/${college.slug}" class="d-flex h-100">
-                                        <img src="admin/images/${college.image}" alt="img" class="image-fit">
+                                        <img src="admin/images/${college.image}" alt="Rightuni" class="image-fit">
                                     </a>
                                 </div>
                                 <div class="listing_caption">
@@ -95,9 +95,7 @@ function fetchColleges(id) {
                                 </div>
                                 <div class="listing_footer">
                                     <div class="action_btn">
-                                        <button type="button" class="listing_btn btn">
-                                            <a href="college/${college.slug}">Read More..</a>
-                                        </button>
+                                      <a class="listing_btn btn" href="college/${college.slug}">Read More..</a>
                                     </div>
                                 </div>
                             </div>

@@ -1,26 +1,4 @@
-<!-- Newsletter Start -->
-<section class="newsletter_box down">
-   <div class="container">
-      <div class="section section-bg no-overlay" style="background-image: url(assets/images/bg/map_bg_white.jpg);">
-         <div class="section-header">
-            <h3 class="title">Our <span>Newsletter</span></h3>
-            <p class="text">Stay updated with our latest news and announcements. Discover current events, important updates, and insights from our community. </p>
-         </div>
-         <div class="row justify-content-center">
-            <div class="col-lg-8 col-md-10">
-               <div class="input-group">
-                  <input type="email" name="#" class="form-control" placeholder="Enter Email Address" autocomplete="off"
-                     required>
-                  <div class="input-group-append">
-                     <button type="submit" class="thm-btn h-100">Subscribe</button>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
-</section>
-<!-- Newsletter End -->
+
 <!-- Footer Start -->
       <footer class="footer section-padding section-bg" style="background-image: url(assets/images/bg/footer.jpg);">
          <div class="container">
@@ -30,7 +8,7 @@
                   <div class="ft_widgets">
                      <div class="ft_about">
                         <div class="ft_logo">
-                           <img src="assets/images/RightUNI-logo.png" alt="logo" class="image-fit-contain">
+                           <img src="assets/images/RightUNI-logo.png" alt="Rightuni" class="image-fit-contain">
                         </div>
                         <p>Rightuni is India's largest Higher Education Ecosystem. Rightuni guides students to reach the right college and help colleges to teach them better.</p>
                         <ul class="ft_social">
@@ -40,18 +18,8 @@
                               </a>
                            </li>
                            <li>
-                              <a href="#">
-                              <i class="fab fa-twitter"></i>
-                              </a>
-                           </li>
-                           <li>
                               <a href="https://www.instagram.com/right_uni/">
                               <i class="fab fa-instagram"></i>
-                              </a>
-                           </li>
-                           <li>
-                              <a href="#">
-                              <i class="fab fa-linkedin-in"></i>
                               </a>
                            </li>
                         </ul>
@@ -146,6 +114,10 @@
          </div>
       </div>
       <!-- Copyright End -->
+      <a href="https://wa.me/919799946027" target="_blank" class="whatsapp_main ft-sticky">
+      <img alt="Rightuni" src="assets/images/whatsapp.png" class="whatsapp_img">
+      </a>
+
       <a href="#" data-target="html" class="back-to-top ft-sticky">
       <i class="fal fa-chevron-up"></i>
       </a>

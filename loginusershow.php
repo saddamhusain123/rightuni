@@ -18,7 +18,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 </head>
 <body>
     <div class="profile_info">
-        <img src="assets/img/client_img.png" alt="Profile Picture">
+        <img src="assets/img/client_img.png" alt="Rightuni">
         <div class="profile_info_iner">
             <div class="profile_author_name">
                 <p><?php echo htmlspecialchars($_SESSION["profession"]); ?></p>

@@ -16,92 +16,10 @@ $url = str_replace("$basename", "", $_SERVER['PHP_SELF']);
                Discover Universities
                <span class="thm-color-one fw-lighter"> Near By You.</span>
             </h1>
-            <p class="subtitle">The Best Learning University</p>
+            <p class="subtitle">The Best Learning University</p><br>
+            <p style="font-size: 18px" class="subtitle" >RightUni is a premier platform offering exhaustive college listings and detailed insights into various institutions. It provides an intuitive interface for exploring courses, campus amenities, and admission criteria, helping students make informed decisions.</p>
          </div>
-         <div class="row justify-content-center">
-            <div class="col-lg-10">
-               <div class="banner_form">
-                  <div class="input-group">
-                     <input type="text" name="#" class="form-control" placeholder="What are you looking for?"
-                        autocomplete="off" required>
-                     <select class="form-control custom-select" name="#" required>
-                        <option selected>All Categories</option>
-                        <option value="option 1">Option 1</option>
-                        <option value="option 2">Option 2</option>
-                        <option value="option 3">Option 3</option>
-                     </select>
-                     <input type="text" name="#" class="form-control location_input" placeholder="Location"
-                        autocomplete="off" required>
-                     <div class="input-group-append ms-lg-3 ms-sm-2 mb-xl-30">
-                        <button type="submit" class="thm-btn w-100">
-                           <i class="fal fa-search"></i>
-                           Search
-                        </button>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <form class="row justify-content-center banner_form g-2">
-            <div class="col-auto">
-               <div class="form-group form-radio">
-                  <input class="form-radio-input" type="radio" name="category" value="Hotels & Travels" id="radio_one">
-                  <label class="form-radio-label" for="radio_one">
-                     <div>
-                        <!-- <span class="icon fal fa-hotel"></span> -->
-                        <span><i class="fa fa-laptop"></i></span>
-                        <p class="mb-0">All Online Courses</p>
-                     </div>
-                  </label>
-               </div>
-            </div>
-            <div class="col-auto">
-               <div class="form-group form-radio">
-                  <input class="form-radio-input" type="radio" name="category" value="Hotels & Travels" id="radio_two"
-                     checked>
-                  <label class="form-radio-label" for="radio_two">
-                     <div>
-                        <span><i class="fa fa-graduation-cap"></i></span>
-                        <p class="mb-0">Graduation Courses</p>
-                     </div>
-                  </label>
-               </div>
-            </div>
-            <div class="col-auto">
-               <div class="form-group form-radio">
-                  <input class="form-radio-input" type="radio" name="category" value="Hotels & Travels"
-                     id="radio_three">
-                  <label class="form-radio-label" for="radio_three">
-                     <div>
-                        <span><i class="fa fa-users"></i></span>
-                        <p class="mb-0">Professional Team</p>
-                     </div>
-                  </label>
-               </div>
-            </div>
-            <div class="col-auto">
-               <div class="form-group form-radio">
-                  <input class="form-radio-input" type="radio" name="category" value="Hotels & Travels" id="radio_four">
-                  <label class="form-radio-label" for="radio_four">
-                     <div>
-                        <span><i class="fa fa-briefcase" aria-hidden="true"></i></span>
-                        <p class="mb-0">Job Placement Support</p>
-                     </div>
-                  </label>
-               </div>
-            </div>
-            <div class="col-auto">
-               <div class="form-group form-radio">
-                  <input class="form-radio-input" type="radio" name="category" value="Hotels & Travels" id="radio_five">
-                  <label class="form-radio-label" for="radio_five">
-                     <div>
-                        <span><i class="fa fa-paint-brush"></i></span>
-                        <p class="mb-0">Art & Design</p>
-                     </div>
-                  </label>
-               </div>
-            </div>
-         </form>
+         
       </div>
    </div>
    <span class="left_skew"></span>
@@ -111,124 +29,6 @@ $url = str_replace("$basename", "", $_SERVER['PHP_SELF']);
 <?php
    include 'homecontact.php';
 ?>
-<!-- Explore Start -->
-<!-- <section class="section">
-   <div class="container">
-      <div class="section-header">
-         <h3 class="title">Most Popular <span>Professor</span></h3>
-         <p class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
-      </div>
-      <div class="row explore_slider"> -->
-         <!-- Item -->
-         <!-- <div class="px-2 slide_item">
-            <div class="explore_box">
-               <div class="explore_image">
-                  <a href="explore.php" class="d-flex h-100">
-                     <img src="assets/images/explore/1.jpg" alt="img" class="image-fit">
-                  </a>
-               </div>
-               <div class="explore_text">
-                  <div class="rating">
-                     <i class="bi-star-fill"></i>
-                     <i class="bi-star-fill"></i>
-                     <i class="bi-star-fill"></i>
-                     <i class="bi-star-fill"></i>
-                     <i class="bi-star"></i>
-                  </div>
-                  <h5 class="title"><a href="explore.php">Health Professor</a></h5>
-               </div>
-               <span class="listing_badge thm-btn btn-small">Expert</span>
-            </div>
-         </div> -->
-         <!-- Item -->
-         <!-- <div class="px-2 slide_item">
-            <div class="explore_box">
-               <div class="explore_image">
-                  <a href="explore.php" class="d-flex h-100">
-                     <img src="assets/images/explore/2.jpg" alt="img" class="image-fit">
-                  </a>
-               </div>
-               <div class="explore_text">
-                  <div class="rating">
-                     <i class="bi-star-fill"></i>
-                     <i class="bi-star-fill"></i>
-                     <i class="bi-star-fill"></i>
-                     <i class="bi-star-fill"></i>
-                     <i class="bi-star"></i>
-                  </div>
-                  <h5 class="title"><a href="explore.php">English Lecturer Professor</a></h5>
-               </div>
-               <span class="listing_badge thm-btn btn-small">Expert</span>
-            </div>
-         </div> -->
-         <!-- Item -->
-         <!-- <div class="px-2 slide_item">
-            <div class="explore_box">
-               <div class="explore_image">
-                  <a href="explore.php" class="d-flex h-100">
-                     <img src="assets/images/explore/3.jpg" alt="img" class="image-fit">
-                  </a>
-               </div>
-               <div class="explore_text">
-                  <div class="rating">
-                     <i class="bi-star-fill"></i>
-                     <i class="bi-star-fill"></i>
-                     <i class="bi-star-fill"></i>
-                     <i class="bi-star-fill"></i>
-                     <i class="bi-star"></i>
-                  </div>
-                  <h5 class="title"><a href="explore.php">Math Professor</a></h5>
-               </div>
-               <span class="listing_badge thm-btn btn-small">Expert</span>
-            </div>
-         </div> -->
-         <!-- Item -->
-         <!-- <div class="px-2 slide_item">
-            <div class="explore_box">
-               <div class="explore_image">
-                  <a href="explore.php" class="d-flex h-100">
-                     <img src="assets/images/explore/4.jpg" alt="img" class="image-fit">
-                  </a>
-               </div>
-               <div class="explore_text">
-                  <div class="rating">
-                     <i class="bi-star-fill"></i>
-                     <i class="bi-star-fill"></i>
-                     <i class="bi-star-fill"></i>
-                     <i class="bi-star-fill"></i>
-                     <i class="bi-star"></i>
-                  </div>
-                  <h5 class="title"><a href="explore.php">Senior Lecturer</a></h5>
-               </div>
-               <span class="listing_badge thm-btn btn-small">Expert</span>
-            </div>
-         </div> -->
-         <!-- Item -->
-         <!-- <div class="px-2 slide_item">
-            <div class="explore_box">
-               <div class="explore_image">
-                  <a href="explore.php" class="d-flex h-100">
-                     <img src="assets/images/explore/5.jpg" alt="img" class="image-fit">
-                  </a>
-               </div>
-               <div class="explore_text">
-                  <div class="rating">
-                     <i class="bi-star-fill"></i>
-                     <i class="bi-star-fill"></i>
-                     <i class="bi-star-fill"></i>
-                     <i class="bi-star-fill"></i>
-                     <i class="bi-star"></i>
-                  </div>
-                  <h5 class="title"><a href="explore.php">Biology Professor</a></h5>
-               </div>
-               <span class="listing_badge thm-btn btn-small">Expert</span>
-            </div>
-         </div> -->
-         <!-- Item -->
-      <!-- </div>
-   </div>
-</section> -->
-<!-- Explore End -->
 <!-- Services Start -->
 <section class="section-padding section-bg no-overlay" style="background-image: url(assets/images/bg/map_bg.jpg);">
    <div class="container">
@@ -246,13 +46,12 @@ $url = str_replace("$basename", "", $_SERVER['PHP_SELF']);
                   <i class="fa fa-graduation-cap" aria-hidden="true"></i>
                </div>
                <h5 class="title">
-                  <a href="services.html">Undergrduate Study</a>
+                  <a>Undergraduate Study</a>
                </h5>
                <p class="mb-0 text fw-500">
                   <span class="thm-color-one">
                      <!-- $28 -->
                   </span>
-                  <a href="services.html">Read More..</a>
                </p>
             </div>
          </div>
@@ -263,13 +62,12 @@ $url = str_replace("$basename", "", $_SERVER['PHP_SELF']);
                   <i class="fa fa-desktop" aria-hidden="true"></i>
                </div>
                <h5 class="title">
-                  <a href="services.html">Books & Library</a>
+                  <a>Books & Library</a>
                </h5>
                <p class="mb-0 text fw-500">
                   <span class="thm-color-one">
                      <!-- $30 -->
                   </span>
-                  <a href="services.html">Read More..</a>
                </p>
             </div>
          </div>
@@ -279,13 +77,12 @@ $url = str_replace("$basename", "", $_SERVER['PHP_SELF']);
                   <i class="fa fa-gamepad" aria-hidden="true"></i>
                </div>
                <h5 class="title">
-                  <a href="services.html">Sports & Games</a>
+                  <a>Sports & Games</a>
                </h5>
                <p class="mb-0 text fw-500">
                   <span class="thm-color-one">
                      <!-- $22 -->
                   </span>
-                  <a href="services.html">Read More..</a>
                </p>
             </div>
          </div>
@@ -295,13 +92,12 @@ $url = str_replace("$basename", "", $_SERVER['PHP_SELF']);
                   <i class="fa fa-book"></i>
                </div>
                <h5 class="title">
-                  <a href="services.html">Free Courses</a>
+                  <a>Free Courses</a>
                </h5>
                <p class="mb-0 text fw-500">
                   <span class="thm-color-one">
                      <!-- $15 -->
                   </span>
-                  <a href="services.html">Read More..</a>
                </p>
             </div>
          </div>
@@ -389,14 +185,13 @@ include "course_list_section.php";
          <div class="px-3 slide_item">
             <div class="testimonial_item">
                <div class="author_image">
-                  <img src="assets/images/testimonials/1.jpg" alt="img" class="image-fit">
+                  <img src="assets/images/testimonials/1.jpg" alt="Rightuni" class="image-fit">
                </div>
                <div class="testimonial_text">
-                  <p class="comment">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc iaculis hendrerit
-                     elementum. </p>
+                  <p class="comment">Finding the right college in Hyderabad seemed overwhelming until I discovered RightUni.in. Special thanks to Anjali Rao for her guidance and support throughout the process. I am now enrolled in my dream college thanks to you! </p>
                   <div class="author_info">
-                     <h6 class="name mb-0">John Wick</h6>
-                     <p>New York</p>
+                     <h6 class="name mb-0">Zaheer Shaikh</h6>
+                     <p>Hyderabad</p>
                   </div>
                </div>
             </div>
@@ -405,14 +200,13 @@ include "course_list_section.php";
          <div class="px-3 slide_item">
             <div class="testimonial_item">
                <div class="author_image">
-                  <img src="assets/images/testimonials/2.jpg" alt="img" class="image-fit">
+                  <img src="assets/images/testimonials/2.jpg" alt="Rightuni" class="image-fit">
                </div>
                <div class="testimonial_text">
-                  <p class="comment">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc iaculis hendrerit
-                     elementum. </p>
+                  <p class="comment">I was lost in the sea of college options in Mumbai, but RightUni.in and Ravi Kumar made my search so much easier. Thank you for your personalized advice and patience, Ravi. I couldn't have done it without you! </p>
                   <div class="author_info">
-                     <h6 class="name mb-0">James</h6>
-                     <p>Paris</p>
+                     <h6 class="name mb-0">Ananya Patel</h6>
+                     <p>Mumbai</p>
                   </div>
                </div>
             </div>
@@ -421,14 +215,13 @@ include "course_list_section.php";
          <div class="px-3 slide_item">
             <div class="testimonial_item">
                <div class="author_image">
-                  <img src="assets/images/testimonials/3.jpg" alt="img" class="image-fit">
+                  <img src="assets/images/testimonials/3.jpg" alt="Rightuni" class="image-fit">
                </div>
                <div class="testimonial_text">
-                  <p class="comment">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc iaculis hendrerit
-                     elementum. </p>
+                  <p class="comment">I was struggling to find a suitable college in Chennai, but RightUni.in and their advisor Priya Singh came to my rescue. Her insights and assistance were invaluable. Thank you, Priya, for making my college journey smooth and stress-free. </p>
                   <div class="author_info">
-                     <h6 class="name mb-0">Michael</h6>
-                     <p>Bangkok</p>
+                     <h6 class="name mb-0">Rajesh Nair</h6>
+                     <p>Chennai</p>
                   </div>
                </div>
             </div>
@@ -437,14 +230,13 @@ include "course_list_section.php";
          <div class="px-3 slide_item">
             <div class="testimonial_item">
                <div class="author_image">
-                  <img src="assets/images/testimonials/4.jpg" alt="img" class="image-fit">
+                  <img src="assets/images/testimonials/4.jpg" alt="Rightuni" class="image-fit">
                </div>
                <div class="testimonial_text">
-                  <p class="comment">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc iaculis hendrerit
-                     elementum.</p>
+                  <p class="comment">Choosing a college in Pune was a daunting task until I connected with Arjun Mehta from RightUni.in. His expert advice and friendly demeanor made the entire process seamless. Thanks, Arjun, for helping me find the perfect fit!</p>
                   <div class="author_info">
-                     <h6 class="name mb-0">William</h6>
-                     <p>Dubai</p>
+                     <h6 class="name mb-0">Meera Jain</h6>
+                     <p>Pune</p>
                   </div>
                </div>
             </div>
@@ -480,7 +272,7 @@ function truncateText($text, $wordLimit) {
 <section class="section-padding">
     <div class="container">
         <div class="section-header">
-            <h3 class="title">Latest <span>News</span></h3>
+            <h3 class="title">Latest <span>Blogs</span></h3>
             <p class="text">Stay updated with our latest news and announcements. Discover current events, important updates, and insights from our community. </p>
         </div>
         <div class="row justify-content-center">
@@ -490,7 +282,7 @@ function truncateText($text, $wordLimit) {
                     <div class="post_wrapper">
                         <div class="post_image">
                             <a href="blog\<?php echo htmlspecialchars($blog['slug']); ?>" class="d-flex h-100">
-                                <img src="admin/images/<?php echo htmlspecialchars($blog['image']); ?>" alt="img" class="image-fit blog-image">
+                                <img src="admin/images/<?php echo htmlspecialchars($blog['image']); ?>" alt="Rightuni" class="image-fit blog-image">
                             </a>
                         </div>
                         <div class="post_caption">
@@ -502,7 +294,7 @@ function truncateText($text, $wordLimit) {
                                     <?php echo truncateText(htmlspecialchars($blog['title']), 4); ?>
                                 </a>
                             </h2>
-                            <p class="post_desc mb-0"><?php echo truncateText(htmlspecialchars($blog['description']), 20); ?></p>
+                            <p class="post_desc mb-0"><?php echo truncateText(htmlspecialchars(strip_tags($blog['description'])), 20); ?></p>
                         </div>
                     </div>
                 </article>
@@ -515,6 +307,7 @@ function truncateText($text, $wordLimit) {
         </div>
     </div>
 </section>
+
 
 <!-- Listings End -->
 
