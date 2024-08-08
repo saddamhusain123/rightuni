@@ -46,7 +46,7 @@ if(isset($_POST['submit']))
 
   if(isset($_POST['password']) && $_POST['password']!="")
   {
-    $data = array_merge($data, array("password"=>$_POST['password']));
+    $data = array_merge($data, array("password"=>password_hash($_POST['password'], PASSWORD_DEFAULT)));
   }
 
   $update=Update('admin', $data, "WHERE id = '".$_SESSION['id']."'"); 
