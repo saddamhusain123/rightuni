@@ -73,52 +73,6 @@ else{
 
   <script src="assets/ckeditor/ckeditor.js"></script>
 
-  <style type="text/css">
-     .btn_edit, .btn_cust{
-      padding: 5px 10px !important;
-    }
-    .social_img{
-      width: 20px !important;
-      height: 20px !important;
-      position: absolute;
-      top: -11px;
-      z-index: 1;
-      left: 40px;
-      margin:5px;
-    }
-
-    .multi_action .dropdown-menu{
-      padding-top: 0px;
-      padding-bottom: 0px;
-      box-shadow: 0px 6px 12px 1px rgba(4, 4, 4, 0.23);
-    }
-    .multi_action .dropdown-menu > li > a{
-      padding: 8px 20px !important;
-    }
-    .multi_action .dropdown-menu > li > a{
-      border-bottom: 1px solid #eee;
-    }
-    p.not_data{
-      font-size: 16px;
-      text-align: center;
-      margin-top: 10px;
-    }
-
-    .top{
-      position: relative !important;
-      padding: 0px 0px 20px 0px !important;
-    }
-    .dataTables_wrapper{
-      overflow: initial !important;
-    }  
-    @media (min-width:200px) and (max-width:991px){
-      .mytooltip:hover .tooltip-content{
-        display:none
-      }
-    }
-
-  </style>
-
 </head>
 <body>
   <div class="app app-default">

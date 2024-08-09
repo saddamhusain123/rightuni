@@ -2886,3 +2886,92 @@ button {
    height: 250px; /* or any desired height */
    object-fit: cover;
 }
+
+.btn_edit, .btn_cust{
+  padding: 5px 10px !important;
+}
+
+.social_img{
+  width: 20px !important;
+  height: 20px !important;
+  position: absolute;
+  top: -11px;
+  z-index: 1;
+  left: 40px;
+  margin:5px;
+}
+
+.multi_action .dropdown-menu{
+  padding-top: 0px;
+  padding-bottom: 0px;
+  box-shadow: 0px 6px 12px 1px rgba(4, 4, 4, 0.23);
+}
+
+.multi_action .dropdown-menu > li > a{
+  padding: 8px 20px !important;
+}
+
+.multi_action .dropdown-menu > li > a{
+  border-bottom: 1px solid #eee;
+}
+
+p.not_data{
+  font-size: 16px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.top{
+  position: relative !important;
+  padding: 0px 0px 20px 0px !important;
+}
+
+.dataTables_wrapper{
+  overflow: initial !important;
+} 
+
+@media (min-width:200px) and (max-width:991px){
+  .mytooltip:hover .tooltip-content{
+    display:none
+  }
+}
+
+
+/*<-- Gallery slider CSS -->*/
+
+/* Fix the size of the lightbox image container */
+.lightbox img {
+    max-width: 600px !important; /* Set your desired width */
+    max-height: 400px !important; /* Set your desired height */
+    width: auto;
+    height: auto;
+}
+
+/* Ensure that the image stays within the box and maintains aspect ratio */
+.lightbox .lb-image {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/* Custom CSS to ensure the arrows are always visible */
+.lightbox .lb-nav a.lb-prev, 
+.lightbox .lb-nav a.lb-next {
+    opacity: 1 !important;
+    width: 50px;
+    height: 100%;
+}
+
+/* Optional: Adjust the arrow size if needed */
+.lightbox .lb-nav a.lb-prev span, 
+.lightbox .lb-nav a.lb-next span {
+    font-size: 50px;
+}
+
+/* Optional: Customize the arrow position */
+.lightbox .lb-nav a.lb-prev {
+    left: 0;
+}
+.lightbox .lb-nav a.lb-next {
+    right: 0;
+}
+/*<-- Gallery slider CSS -->*/
