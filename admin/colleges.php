@@ -72,11 +72,11 @@ $colleges_result = $stmt->get_result();
 
 <div class="row">
   <div class="col-xs-12">
-    <?php
-    if(isset($_SERVER['HTTP_REFERER'])) {
+            <?php
+              if(isset($_SERVER['HTTP_REFERER'])) {
       echo '<a href="'.$_SERVER['HTTP_REFERER'].'"><h4 class="pull-left" style="font-size: 20px;color: #e91e63"><i class="fa fa-arrow-left"></i> Back</h4></a>';
-    }
-    ?>
+              }
+            ?>            
     <div class="card mrg_bottom">
       <div class="page_title_block">
         <div class="col-md-5 col-xs-12">

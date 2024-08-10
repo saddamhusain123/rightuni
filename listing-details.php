@@ -101,6 +101,11 @@ if (isset($_POST['submit'])) {
 // $conn->close();
 
 ?>  
+
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- SweetAlert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
@@ -222,21 +227,23 @@ if (isset($_POST['submit'])) {
 
                             if ($result_gallery->num_rows > 0) { ?>
                                 <div class="sidebar_widget">
-                                    <h5 class="widget_title"><i class="fal fa-image icon"></i> Gallery</h5>
-                                    <div class="widget_inner">
-                                        <ul class="gallery row g-3">
-                                            <?php
-                                            while ($row_gallery = $result_gallery->fetch_assoc()) {
-                                                // Sanitize the image path for safe output
-                                                $image_url = htmlspecialchars($row_gallery["image"]);
-                                            ?>
-                                                <li class="col-4">
-                                                    <img src="admin/images/<?= $image_url ?>" alt="Rightuni" class="image-fit">
-                                                </li>
-                                            <?php } ?>
-                                        </ul>
-                                    </div>
-                                </div>
+                                  <h5 class="widget_title"><i class="fal fa-image icon"></i> Gallery</h5>
+                                  <div class="widget_inner">
+                                      <ul class="gallery row g-3">
+                                          <?php
+                                          while ($row_gallery = $result_gallery->fetch_assoc()) {
+                                              $image_url = htmlspecialchars($row_gallery["image"]);
+                                          ?>
+                                              <li class="col-4">
+                                                  <a href="admin/images/college_gallery/<?= $image_url ?>" data-lightbox="college-gallery" data-title="College Gallery">
+                                                      <img src="admin/images/college_gallery/<?= $image_url ?>" alt="Rightuni" class="image-fit" >
+                                                  </a>
+                                              </li>
+                                          <?php } ?>
+                                      </ul>
+                                  </div>
+                              </div>
+
                             <?php
                             }
                         }
