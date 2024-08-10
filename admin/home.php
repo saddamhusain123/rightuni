@@ -9,13 +9,14 @@ if(isset($_SESSION['login_type']) AND $_SESSION['login_type']=='reporter'){
 }
 
 // Get category list
-$qry_cat="SELECT COUNT(*) as num FROM courses";
+$qry_cat="SELECT COUNT(*) AS num FROM courses WHERE id != 1;
+";
 
 $total_category= mysqli_fetch_array(mysqli_query($mysqli,$qry_cat));
 $total_category = $total_category['num'];
 
 // Get news list
-$qry_news="SELECT COUNT(*) as num FROM colleges";
+$qry_news="SELECT COUNT(*) AS num FROM colleges WHERE deleted!=1";
 $total_news = mysqli_fetch_array(mysqli_query($mysqli,$qry_news));
 $total_news = $total_news['num'];
 
@@ -140,7 +141,7 @@ if($smtp_warning)
       </div>
     </a> 
   </div>
-  <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12"> <a href="manage_users.php" class="card card-banner card-pink-light">
+  <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12"> <a href="manage_blog.php" class="card card-banner card-pink-light">
       <div class="card-body"> <i class="icon fa fa-image fa-4x"></i>
         <div class="content">
           <div class="title">Blogs</div>
