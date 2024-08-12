@@ -139,7 +139,7 @@ $colleges_result = $stmt->get_result();
                       </div>
                     </td>
                     <td><?php echo $i;?></td>
-                    <td><a href="edit_college.php?id=<?php echo $college_row['id'];?>&redirect=<?=$redirectUrl?>"><?php echo $college_row['name'];?></a></td>
+                    <td><a href="view_college.php?id=<?php echo $college_row['id'];?>&redirect=<?=$redirectUrl?>"><?php echo $college_row['name'];?></a></td>
                     <td><?php echo $college_row['city'];?></td>
                     <td><?php echo $college_row['state_name'];?></td>
                     <td><img src="<?php echo $college_img;?>" style="height: 100px; width: 100px;"></td>
