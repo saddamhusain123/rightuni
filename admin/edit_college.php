@@ -90,18 +90,25 @@ if (isset($_POST['submit'])) {
     // Handle file upload
     $news_featured_image = $row_college['image']; // Preserve existing image
 
-    if ($_FILES['news_featured_image']['error'] == UPLOAD_ERR_OK) {
-        $ext = pathinfo($_FILES['news_featured_image']['name'], PATHINFO_EXTENSION);
-        $news_featured_image = rand(0, 99999) . "_" . date('dmYhis') . "." . $ext;
-        $tpath1 = 'images/' . $news_featured_image;
+if ($_FILES['news_featured_image']['error'] == UPLOAD_ERR_OK) {
+    $fileName = $_FILES['news_featured_image']['name'];
+    $fileTmpName = $_FILES['news_featured_image']['tmp_name'];
+    $fileExt = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+    $allowedExts = ['jpeg', 'jpg', 'png', 'svg', 'gif'];
 
-        if ($ext != 'png') {
-            compress_image($_FILES["news_featured_image"]["tmp_name"], $tpath1, 80);
-        } else {
-            $tmp = $_FILES['news_featured_image']['tmp_name'];
-            move_uploaded_file($tmp, $tpath1);
-        }
+    // Generate a unique name for the file
+    $news_featured_image = rand(0, 99999) . "_" . date('dmYhis') . "." . $fileExt;
+    $tpath1 = 'images/' . $news_featured_image;
+
+    if (in_array($fileExt, $allowedExts)) {
+        // Move the uploaded file to the target directory
+        move_uploaded_file($fileTmpName, $tpath1);
+    } else {
+        // Handle the case where the file extension is not allowed
+        echo "File type not allowed.";
     }
+}
+
 
     // Function to generate slug
     function generateSlug($text) {
@@ -397,43 +404,43 @@ if (isset($_POST['removed_files'])) {
                   </div>
                 </div>
              
- <div class="col-md-6">
-    <label class="col-md-12 control-label">Gallery Image:
-        <p class="control-label-help">(Recommended resolution: 500x400, 600x500, 700x600 OR width greater than height)</p>
-    </label>
-    <div class="fileupload_block">
-        <input type="file" id="fileInput" name="college_gallery_image[]" accept=".png, .jpg, .jpeg, .svg, .gif" multiple>
-        
-        <input type="hidden" id="removedFiles" name="removed_files">
+             <div class="col-md-6">
+                <label class="col-md-12 control-label">Gallery Image:
+                    <p class="control-label-help">(Recommended resolution: 500x400, 600x500, 700x600 OR width greater than height)</p>
+                </label>
+                <div class="fileupload_block">
+                    <input type="file" id="fileInput" name="college_gallery_image[]" accept=".png, .jpg, .jpeg, .svg, .gif" multiple>
+                    
+                    <input type="hidden" id="removedFiles" name="removed_files">
 
-        <div class="fileupload_img featured_image" id="fileList">
-            <?php foreach ($images as $image): ?>
-                <div class="file-item" data-file="<?php echo htmlspecialchars($image); ?>">
-                    <a href="images/college_gallery/<?php echo htmlspecialchars($image); ?>" target="_blank">
-                        <p><?php echo htmlspecialchars($image); ?></p>
-                    </a>
-                    <i class="fa fa-trash" id="remove-file"></i>
+                    <div class="fileupload_img featured_image" id="fileList">
+                        <?php foreach ($images as $image): ?>
+                            <div class="file-item" data-file="<?php echo htmlspecialchars($image); ?>">
+                                <a href="images/college_gallery/<?php echo htmlspecialchars($image); ?>" target="_blank">
+                                    <p><?php echo htmlspecialchars($image); ?></p>
+                                </a>
+                                <i class="fa fa-trash" id="remove-file"></i>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
                 </div>
-            <?php endforeach; ?>
-        </div>
-    </div>
-</div>
+            </div>
 
-<style>
-        .file-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-        .file-item p {
-            margin: 0;
-            margin-right: 10px;
-        }
-        .file-item i {
-            cursor: pointer;
-            color: red;
-        }
-    </style>
+            <style>
+                    .file-item {
+                        display: flex;
+                        align-items: center;
+                        margin-bottom: 10px;
+                    }
+                    .file-item p {
+                        margin: 0;
+                        margin-right: 10px;
+                    }
+                    .file-item i {
+                        cursor: pointer;
+                        color: red;
+                    }
+                </style>
 
 
             <div class="row">
