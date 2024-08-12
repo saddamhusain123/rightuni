@@ -90,7 +90,7 @@ if (isset($_POST['submit'])) {
     // Handle file upload
     $news_featured_image = $row_college['image']; // Preserve existing image
 
-if ($_FILES['news_featured_image']['error'] == UPLOAD_ERR_OK) {
+    if ($_FILES['news_featured_image']['error'] == UPLOAD_ERR_OK) {
     $fileName = $_FILES['news_featured_image']['name'];
     $fileTmpName = $_FILES['news_featured_image']['tmp_name'];
     $fileExt = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
@@ -212,6 +212,28 @@ if ($_FILES['news_featured_image']['error'] == UPLOAD_ERR_OK) {
 
 
 
+if (isset($_POST['removed_files'])) {
+    // Sanitize and process the list of removed files
+    $removed_files = explode(',', $_POST['removed_files']);
+    
+    // Prepare and execute a statement for each removed file
+    foreach ($removed_files as $file_name) {
+        // Trim any extra whitespace and sanitize the file name
+        $file_name = trim($file_name);
+        $file_name = mysqli_real_escape_string($mysqli, $file_name);
+
+        // Construct the SQL query to mark the file as deleted
+        $sql90 = "UPDATE college_gallery SET deleted = 1 WHERE image = '$file_name' AND college_id = '$cid'";
+        
+        // Execute the SQL query
+        if (!mysqli_query($mysqli, $sql90)) {
+            // Handle errors in SQL execution
+            echo "Error updating record: " . mysqli_error($mysqli);
+        }
+    }
+}
+   
+
  if (isset($_FILES['college_gallery_image'])) {
     // Get the college ID from the previous insert or form data
     
@@ -251,27 +273,7 @@ if ($_FILES['news_featured_image']['error'] == UPLOAD_ERR_OK) {
 
 
 
-if (isset($_POST['removed_files'])) {
-    // Sanitize and process the list of removed files
-    $removed_files = explode(',', $_POST['removed_files']);
-    
-    // Prepare and execute a statement for each removed file
-    foreach ($removed_files as $file_name) {
-        // Trim any extra whitespace and sanitize the file name
-        $file_name = trim($file_name);
-        $file_name = mysqli_real_escape_string($mysqli, $file_name);
-
-        // Construct the SQL query to mark the file as deleted
-        $sql90 = "UPDATE college_gallery SET deleted = 1 WHERE image = '$file_name' AND college_id = '$cid'";
-        
-        // Execute the SQL query
-        if (!mysqli_query($mysqli, $sql90)) {
-            // Handle errors in SQL execution
-            echo "Error updating record: " . mysqli_error($mysqli);
-        }
-    }
-}
-    $_SESSION['msg'] = "11";
+ $_SESSION['msg'] = "11";
     header("Location: colleges.php");
     exit;
 }

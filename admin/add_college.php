@@ -31,20 +31,24 @@ $State_result = mysqli_query($mysqli, $state_qry);
 
 if (isset($_POST['submit'])) {
 
-    if ($_POST['featured_image_url'] == '') {
-        $ext = pathinfo($_FILES['news_featured_image']['name'], PATHINFO_EXTENSION);
-        $news_featured_image = rand(0, 99999) . "_" . date('dmYhis') . "." . $ext;
-        $tpath1 = 'images/' . $news_featured_image;
+    if ($_FILES['news_featured_image']['error'] == UPLOAD_ERR_OK) {
+    $fileName = $_FILES['news_featured_image']['name'];
+    $fileTmpName = $_FILES['news_featured_image']['tmp_name'];
+    $fileExt = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+    $allowedExts = ['jpeg', 'jpg', 'png', 'svg', 'gif'];
 
-        if ($ext != 'png') {
-            $pic1 = compress_image($_FILES["news_featured_image"]["tmp_name"], $tpath1, 80);
-        } else {
-            $tmp = $_FILES['news_featured_image']['tmp_name'];
-            move_uploaded_file($tmp, $tpath1);
-        }
+    // Generate a unique name for the file
+    $news_featured_image = rand(0, 99999) . "_" . date('dmYhis') . "." . $fileExt;
+    $tpath1 = 'images/' . $news_featured_image;
+
+    if (in_array($fileExt, $allowedExts)) {
+        // Move the uploaded file to the target directory
+        move_uploaded_file($fileTmpName, $tpath1);
     } else {
-        $news_featured_image = trim($_POST['featured_image_url']);
+        // Handle the case where the file extension is not allowed
+        echo "File type not allowed.";
     }
+  }
 
     // Function to generate URL-friendly slug
     function generateSlug($text) {
