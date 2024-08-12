@@ -120,6 +120,7 @@ $commaSeparatedStringMetaTitle = implode(",  ", $meta_titles);
             <div class="logo">
                 <a href="home" class="d-flex h-100">
                     <img src="assets/images/RightUNI-logo.png" alt="RightUni" class="image-fit-contain">
+                    <img src="assets/images/RightUNI-logo.png" alt="RightUni" class="image-fit-contain">
                 </a>
             </div>
             <!-- logo -->
