@@ -267,68 +267,68 @@ switch ($_POST['action']) {
 			$deleteSql="DELETE FROM comments WHERE `user_id` IN ($ids)";
 			mysqli_query($mysqli, $deleteSql);
 
-			$deleteSql="DELETE FROM reports WHERE `user_id` IN ($ids)";
-			mysqli_query($mysqli, $deleteSql);
+			// $deleteSql="DELETE FROM reports WHERE `user_id` IN ($ids)";
+			// mysqli_query($mysqli, $deleteSql);
 
-			$deleteSql="DELETE FROM active_log WHERE `user_id` IN ($ids)";
-			mysqli_query($mysqli, $deleteSql);
+			// $deleteSql="DELETE FROM active_log WHERE `user_id` IN ($ids)";
+			// mysqli_query($mysqli, $deleteSql);
 
 			
 
-			$deleteSql="DELETE FROM favourite WHERE `user_id` IN ($ids)";
-			mysqli_query($mysqli, $deleteSql);
+			// $deleteSql="DELETE FROM favourite WHERE `user_id` IN ($ids)";
+			// mysqli_query($mysqli, $deleteSql);
 
-			$deleteSql="DELETE FROM request_reporter WHERE `user_id` IN ($ids)";
-			mysqli_query($mysqli, $deleteSql);
+			// $deleteSql="DELETE FROM request_reporter WHERE `user_id` IN ($ids)";
+			// mysqli_query($mysqli, $deleteSql);
 
-			$sql="SELECT * FROM news WHERE `user_id` IN ($ids) AND `user_id` <> 0";
+			// $sql="SELECT * FROM news WHERE `user_id` IN ($ids) AND `user_id` <> 0";
+			// $res=mysqli_query($mysqli, $sql);
+
+			// while ($row=mysqli_fetch_assoc($res)){
+
+			// 	if($row['news_featured_image']!="" AND file_exists('images/'.$row['news_featured_image']))
+			// 	{
+			// 		unlink('images/'.$row['news_featured_image']);
+			// 		unlink('images/thumbs/'.$row['news_featured_image']);
+			// 	}
+
+			// 	$sql_gallery="SELECT * FROM news_gallery WHERE `news_id` = '".$row['id']."'";
+			// 	$res_gallery=mysqli_query($mysqli, $sql_gallery);
+
+			// 	while ($row_gallery=mysqli_fetch_assoc($res_gallery)) {
+			// 		if(file_exists('images/'.$row_gallery['news_gallery_image']));{
+			// 			unlink('images/'.$row_gallery['news_gallery_image']);
+			// 		}
+			// 	}
+
+			// 	mysqli_free_result($res_gallery);
+
+			// 	Delete('news_gallery','news_id='.$row['id']);
+
+			// 	Delete('comments','news_id='.$row['id']);
+			// 	Delete('reports','news_id='.$row['id']);
+			// 	Delete('views','news_id='.$row['id']);
+
+			// }
+
+			// $deleteSql="DELETE FROM news WHERE `user_id` IN ($ids)";
+			// mysqli_query($mysqli, $deleteSql);
+
+			// mysqli_free_result($res);
+
+			$sql="SELECT * FROM users WHERE `id`  IN ($ids)";
 			$res=mysqli_query($mysqli, $sql);
 
-			while ($row=mysqli_fetch_assoc($res)){
+			// while ($row=mysqli_fetch_assoc($res)) {
+			// 	if($row['user_profile']!="" AND file_exists('images/'.$row['user_profile']))
+			// 	{
+			// 		unlink('images/'.$row['user_profile']);
+			// 	}
+			// }
 
-				if($row['news_featured_image']!="" AND file_exists('images/'.$row['news_featured_image']))
-				{
-					unlink('images/'.$row['news_featured_image']);
-					unlink('images/thumbs/'.$row['news_featured_image']);
-				}
+			// mysqli_free_result($res);
 
-				$sql_gallery="SELECT * FROM news_gallery WHERE `news_id` = '".$row['id']."'";
-				$res_gallery=mysqli_query($mysqli, $sql_gallery);
-
-				while ($row_gallery=mysqli_fetch_assoc($res_gallery)) {
-					if(file_exists('images/'.$row_gallery['news_gallery_image']));{
-						unlink('images/'.$row_gallery['news_gallery_image']);
-					}
-				}
-
-				mysqli_free_result($res_gallery);
-
-				Delete('news_gallery','news_id='.$row['id']);
-
-				Delete('comments','news_id='.$row['id']);
-				Delete('reports','news_id='.$row['id']);
-				Delete('views','news_id='.$row['id']);
-
-			}
-
-			$deleteSql="DELETE FROM news WHERE `user_id` IN ($ids)";
-			mysqli_query($mysqli, $deleteSql);
-
-			mysqli_free_result($res);
-
-			$sql="SELECT * FROM users WHERE `id` IN ($ids)";
-			$res=mysqli_query($mysqli, $sql);
-
-			while ($row=mysqli_fetch_assoc($res)) {
-				if($row['user_profile']!="" AND file_exists('images/'.$row['user_profile']))
-				{
-					unlink('images/'.$row['user_profile']);
-				}
-			}
-
-			mysqli_free_result($res);
-
-			$deleteSql="DELETE FROM $table WHERE `id` IN ($ids)";
+			$deleteSql="UPDATE  $table SET deleted = 1 WHERE `id` IN ($ids)  ";
 			mysqli_query($mysqli, $deleteSql);
 		}
 		else if($table=='colleges') {
